@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: planny
+  datasource:
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 6
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: planny
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: off
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.xml
+
+server:
+  port: 8081
