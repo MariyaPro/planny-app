@@ -23,4 +23,3 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     List<Event> getEventsPeriod(@Param("startPeriod") LocalDate startPeriod,
                                 @Param("endPeriod") LocalDate endPeriod);
 }
-

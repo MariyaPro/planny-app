@@ -1,7 +1,5 @@
 package com.prokofeva.dbplannyservice.service;
 
-
-
 import com.prokofeva.dbplannyservice.dto.EventDto;
 import com.prokofeva.dbplannyservice.enums.Category;
 
