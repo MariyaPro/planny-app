@@ -1,23 +1,40 @@
 package com.prokofeva.dbplannyservice.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class EventDto {
 
     private UUID id;
-    private String name;
-    private String category;
+    @NotEmpty
+    private String title;
+    @NotEmpty
+    private String ownerName;
+    @NotEmpty
+    private String eventTypeName;
+    @NotNull
     private LocalDate dateStart;
     private LocalDate dateEnd;
+    private LocalTime startTime;
+    private LocalTime endTime;
+
     private String description;
+    private String location;
+
+    @Value(value = "true")
+    private boolean active;
+    private LocalDateTime updated;
+
 }

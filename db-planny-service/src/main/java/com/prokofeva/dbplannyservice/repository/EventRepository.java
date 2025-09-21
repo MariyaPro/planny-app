@@ -1,7 +1,6 @@
 package com.prokofeva.dbplannyservice.repository;
 
 import com.prokofeva.dbplannyservice.entity.Event;
-import com.prokofeva.dbplannyservice.enums.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface EventRepository extends JpaRepository<Event, UUID> {
 
-    List<Event> getAllByCategory(Category category);
+    List<Event> findEventsByEventType_Name(String eventTypeName);
 
     @Query(value = """
             select * from events e

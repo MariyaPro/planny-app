@@ -1,14 +1,17 @@
 package com.prokofeva.dbplannyservice.entity;
 
-import com.prokofeva.dbplannyservice.enums.Category;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -17,20 +20,29 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Event {
 
     @Id
     @UuidGenerator
     private UUID id;
-    private String name;
-    @Enumerated(EnumType.STRING)
-    private Category category;
+    @NotEmpty
+    private String title;
+    @ManyToOne
+    private Owner owner;
+    @ManyToOne
+    private EventType eventType;
+
     private LocalDate dateStart;
     private LocalDate dateEnd;
+    private LocalTime startTime;
+    private LocalTime endTime;
+
     private String description;
-//    private String location;
-//    private LocalTime startTime;
-//    private LocalTime endTime;
-//    private Duration duration;
+    private String location;
+
+    private boolean active;
+    @UpdateTimestamp
+    private LocalDateTime updated;
 
 }
