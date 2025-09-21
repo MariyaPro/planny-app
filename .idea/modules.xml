@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/db-planny-service/db-planny-service.iml" filepath="$PROJECT_DIR$/db-planny-service/db-planny-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/planny-app.iml" filepath="$PROJECT_DIR$/planny-app.iml" />
     </modules>
   </component>
