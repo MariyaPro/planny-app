@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-002-001" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'holiday', 'праздник',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'holiday'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-002" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'health', 'здоровье',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'health'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-003" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'sports', 'спорт',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'sports'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-004" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'beauty', 'красота',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'beauty'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-005" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'guests', 'гости',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'guests'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-006" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(),'travel', 'путешествие',current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'travel'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-007" author="mprokofeva">
+        <sql>
+            insert into event_types(id, name, description, updated)
+            values (gen_random_uuid(), 'unknown', 'прочее', current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from event_types where name = 'unknown'
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

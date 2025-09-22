@@ -35,6 +35,8 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.liquibase:liquibase-core")
 }
 
 tasks.withType<Test> {

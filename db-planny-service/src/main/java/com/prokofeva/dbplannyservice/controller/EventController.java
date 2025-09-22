@@ -1,9 +1,9 @@
 package com.prokofeva.dbplannyservice.controller;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
-import com.prokofeva.dbplannyservice.enums.Category;
 import com.prokofeva.dbplannyservice.service.EventService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +21,7 @@ public class EventController {
 
     @PostMapping("/")
     @LogRequest(logParameters = false)
-    public ResponseEntity<Object> createEvent(@RequestBody EventDto eventDto) {
+    public ResponseEntity<Object> createEvent(@RequestBody @Valid EventDto eventDto) {
         eventService.createEvent(eventDto);
         return ResponseEntity.ok().build();
     }
@@ -35,7 +35,8 @@ public class EventController {
 
     @GetMapping("/category")
     @LogRequest(logParameters = false, logResult = false)
-    public ResponseEntity<Object> getEventsByCategory(@RequestParam Category category) {
-        return ResponseEntity.ok().body(eventService.getEventsByCategory(category));
+    public ResponseEntity<Object> getEventsByEventType(@RequestParam String eventType) {
+        return ResponseEntity.ok().body(eventService.getEventsByEventType(eventType));
     }
+
 }
