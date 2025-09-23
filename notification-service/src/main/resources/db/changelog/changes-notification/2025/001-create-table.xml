@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-001-001" author="mprokofeva">
+        <sql>
+            create schema notifications;
+        </sql>
+    </changeSet>
+    <changeSet id="2025-001-002" author="mprokofeva">
+        <sql>
+            create table notifications.report_types
+            (
+                id          uuid         not null
+                    constraint report_types_pkey primary key,
+                name        varchar(255) not null,
+                description varchar(255),
+                active      boolean default true,
+                updated     timestamp
+            );
+        </sql>
+        <rollback>
+            <sql>
+                drop table notifications.report_types
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-001-003" author="mprokofeva">
+        <sql>
+            create table notifications.recipients
+            (
+                id      uuid         not null
+                    constraint recipients_pkey primary key,
+                name    varchar(255) not null,
+                email   varchar(255) not null,
+                phone   varchar(255) not null,
+                active  boolean default true,
+                updated timestamp
+            );
+        </sql>
+        <rollback>
+            <sql>
+                drop table notifications.recipients
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

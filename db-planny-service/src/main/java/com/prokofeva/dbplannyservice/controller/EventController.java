@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/planny/events")
+@RequestMapping("/api/db-planny/events")
 @Slf4j
 public class EventController {
     private final EventService eventService;

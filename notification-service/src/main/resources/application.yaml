@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
-    name: db-planny-service
+    name: notification-service
   datasource:
     hikari:
       minimum-idle: 3
@@ -21,6 +21,9 @@ spring:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
 
+services:
+  db-planny-service: "http://localhost:8081/api/db-planny"
+
 logging:
   file:
-    name: logs/log_db-planny-service
+    name: logs/log_notification-service

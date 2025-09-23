@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notification-service/notification-service.iml" filepath="$PROJECT_DIR$/notification-service/notification-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/planny-app.iml" filepath="$PROJECT_DIR$/planny-app.iml" />
     </modules>
   </component>
