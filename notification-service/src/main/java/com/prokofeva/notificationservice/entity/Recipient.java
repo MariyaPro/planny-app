@@ -1,46 +1,36 @@
-package com.prokofeva.dbplannyservice.entity;
+package com.prokofeva.notificationservice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.validator.constraints.UniqueElements;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "db_events", name = "events")
+@Table(schema = "notifications", name = "recipients")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @Builder
-public class Event {
+public class Recipient {
 
     @Id
     @UuidGenerator
     private UUID id;
     @NotEmpty
-    private String title;
-    @ManyToOne
-    private Owner owner;
-    @ManyToOne
-    private EventType eventType;
-
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
-    private LocalTime startTime;
-    private LocalTime endTime;
-
-    private String description;
-    private String location;
-
+    @UniqueElements
+    private String name;
+    @Email
+    private String email;
+    private String phone;
     private boolean active;
     @UpdateTimestamp
     private LocalDateTime updated;

@@ -1,6 +1,7 @@
 package com.prokofeva.dbplannyservice.service.impl;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
+import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
 import com.prokofeva.dbplannyservice.mapper.MapperEvent;
 import com.prokofeva.dbplannyservice.repository.EventRepository;
 import com.prokofeva.dbplannyservice.service.EventService;
@@ -41,5 +42,12 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findEventsByEventType_Name(eventType).stream()
                 .map(mapperEvent::toDto)
                 .toList();
+    }
+
+    @Override
+    @LogRequest
+    public List<EventDto> getEventsForReport(EventsForReportRequest request) {
+        // todo
+        return List.of();
     }
 }

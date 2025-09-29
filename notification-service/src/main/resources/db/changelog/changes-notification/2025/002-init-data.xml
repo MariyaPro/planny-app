@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-002-001" author="mprokofeva">
+        <sql>
+            insert into notifications.report_types (id, name, description, updated)
+            values (gen_random_uuid(),'week','план на неделю пн-вс', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                drop from notifications.report_types where name='week'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-002" author="mprokofeva">
+        <sql>
+            insert into notifications.report_types (id, name, description, updated)
+            values (gen_random_uuid(),'day','план на день', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                drop from notifications.report_types where name='day'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-003" author="mprokofeva">
+        <sql>
+            insert into notifications.report_types (id, name, description, updated)
+            values (gen_random_uuid(),'person','персональный план', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                drop from notifications.report_types where name='person'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-002-004" author="mprokofeva">
+        <sql>
+            insert into notifications.report_types (id, name, description, updated)
+            values (gen_random_uuid(),'event type','события одного типа', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                drop from notifications.report_types where name='person'
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
