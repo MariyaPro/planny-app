@@ -1,6 +1,7 @@
 package com.prokofeva.dbplannyservice.controller;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
+import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
 import com.prokofeva.dbplannyservice.service.EventService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
 import jakarta.validation.Valid;
@@ -37,6 +38,12 @@ public class EventController {
     @LogRequest(logParameters = false, logResult = false)
     public ResponseEntity<Object> getEventsByEventType(@RequestParam String eventType) {
         return ResponseEntity.ok().body(eventService.getEventsByEventType(eventType));
+    }
+
+    @PostMapping("/eventsForReport")
+    @LogRequest
+    public ResponseEntity<Object> getEventsForReport(@RequestBody @Valid EventsForReportRequest request) {
+        return ResponseEntity.ok().body(eventService.getEventsForReport(request));
     }
 
 }

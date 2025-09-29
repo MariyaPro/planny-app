@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "owners")
+@Table(schema = "db_events", name = "owners")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

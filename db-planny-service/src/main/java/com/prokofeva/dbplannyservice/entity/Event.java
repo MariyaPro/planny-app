@@ -15,7 +15,7 @@ import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "events")
+@Table(schema = "db_events", name = "events")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
