@@ -1,7 +1,7 @@
 package com.prokofeva.dbplannyservice.service;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
-import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
+import com.prokofeva.dbplannyservice.dto.ReportRequest;
 import jakarta.validation.Valid;
 
 import java.time.LocalDate;
@@ -14,5 +14,5 @@ public interface EventService {
 
     List<EventDto> getEventsByEventType(String eventType);
 
-    List<EventDto> getEventsForReport(@Valid EventsForReportRequest request);
+    List<EventDto> getEventsForReport(@Valid ReportRequest request);
 }

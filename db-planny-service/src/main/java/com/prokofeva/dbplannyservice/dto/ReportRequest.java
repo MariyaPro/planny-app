@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Builder
-public record EventsForReportRequest(
+public record ReportRequest(
         @NotNull
         LocalDate dateStart,
         @NotNull

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-005-001" author="mprokofeva">
+        <sql>
+            insert into db_events.owners (id, name, full_name, updated)
+            values (gen_random_uuid(),'Дима', 'Прокофьев Дмитрий Денисович', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+            delete from db_events.owners where full_name = 'Прокофьев Дмитрий Денисович';
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-005-002" author="mprokofeva">
+        <sql>
+            insert into db_events.owners (id, name, full_name, updated)
+            values (gen_random_uuid(),'Миша', 'Прокофьев Михаил Денисович', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where full_name = 'Прокофьев Михаил Денисович';
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-005-003" author="mprokofeva">
+        <sql>
+            insert into db_events.owners (id, name, full_name, updated)
+            values (gen_random_uuid(),'Денис', 'Прокофьев Денис Владимирович', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where full_name = 'Прокофьев Денис Владимирович';
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-005-004" author="mprokofeva">
+        <sql>
+            insert into db_events.owners (id, name, full_name, updated)
+            values (gen_random_uuid(),'Маша', 'Прокофьева Мария Сергеевна', current_timestamp)
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where full_name = 'Прокофьева Мария Сергеевна';
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

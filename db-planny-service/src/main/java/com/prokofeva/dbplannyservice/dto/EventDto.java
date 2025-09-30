@@ -25,8 +25,7 @@ public class EventDto {
     @NotEmpty
     private String eventTypeName;
     @NotNull
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
+    private LocalDate dateEvent;
     private LocalTime startTime;
     private LocalTime endTime;
 

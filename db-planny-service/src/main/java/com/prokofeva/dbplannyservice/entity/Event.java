@@ -33,8 +33,7 @@ public class Event {
     @ManyToOne
     private EventType eventType;
 
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
+    private LocalDate dateEvent;
     private LocalTime startTime;
     private LocalTime endTime;
 

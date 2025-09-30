@@ -3,6 +3,7 @@ package com.prokofeva.dbplannyservice.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,8 @@ public class Owner {
     @UuidGenerator
     private UUID id;
     private String name;
+    @NotNull
+    private String fullName;
     private String description;
 
     private  boolean active;

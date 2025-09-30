@@ -7,5 +7,8 @@
 
     <include file="/db/changelog/changes-db-events/2025/001-create-table.xml"/>
     <include file="/db/changelog/changes-db-events/2025/002-event_type_data.xml"/>
+    <include file="/db/changelog/changes-db-events/2025/003-edit_events_table.xml"/>
+    <include file="/db/changelog/changes-db-events/2025/004-edit_table_owners.xml"/>
+    <include file="/db/changelog/changes-db-events/2025/005-owners_init_data.xml"/>
 
 </databaseChangeLog>

@@ -1,7 +1,7 @@
 package com.prokofeva.dbplannyservice.service.impl;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
-import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
+import com.prokofeva.dbplannyservice.dto.ReportRequest;
 import com.prokofeva.dbplannyservice.mapper.MapperEvent;
 import com.prokofeva.dbplannyservice.repository.EventRepository;
 import com.prokofeva.dbplannyservice.service.EventService;
@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @LogRequest
-    public List<EventDto> getEventsForReport(EventsForReportRequest request) {
+    public List<EventDto> getEventsForReport(ReportRequest request) {
         // todo
         return List.of();
     }
