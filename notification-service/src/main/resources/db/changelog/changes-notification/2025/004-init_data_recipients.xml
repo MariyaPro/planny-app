@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-004-001" author="mprokofeva">
+        <sql>
+            insert into notifications.recipients(id, name, active, updated, code_config)
+            values (gen_random_uuid(), 'M', true, current_timestamp, 'm_email')
+        </sql>
+        <rollback>
+            <sql>
+                delete from notifications.recipients where name = 'M' and code_config = 'm_email';
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2025-004-002" author="mprokofeva">
+        <sql>
+            insert into notifications.recipients(id, name, active, updated, code_config)
+            values (gen_random_uuid(), 'D', true, current_timestamp, 'd_email')
+        </sql>
+        <rollback>
+            <sql>
+                delete from notifications.recipients where name = 'D' and code_config = 'd_email';
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

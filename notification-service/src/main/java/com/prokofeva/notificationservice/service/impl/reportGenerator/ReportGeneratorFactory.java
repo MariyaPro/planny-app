@@ -1,11 +1,7 @@
-package com.prokofeva.notificationservice.facade;
+package com.prokofeva.notificationservice.service.impl.reportGenerator;
 
 import com.prokofeva.notificationservice.enums.ReportTypeCode;
 import com.prokofeva.notificationservice.service.ReportGenerator;
-import com.prokofeva.notificationservice.service.impl.ReportGeneratorDay;
-import com.prokofeva.notificationservice.service.impl.ReportGeneratorEventType;
-import com.prokofeva.notificationservice.service.impl.ReportGeneratorPerson;
-import com.prokofeva.notificationservice.service.impl.ReportGeneratorWeek;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

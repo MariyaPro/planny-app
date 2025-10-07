@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
@@ -26,6 +27,7 @@ public class ReportType {
     @NotEmpty
     private String name;
     private String description;
+    @NotNull
     private boolean active;
     @UpdateTimestamp
     private LocalDateTime updated;

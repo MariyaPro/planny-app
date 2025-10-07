@@ -1,4 +1,4 @@
-package com.prokofeva.notificationservice.service.impl;
+package com.prokofeva.notificationservice.service.impl.reportGenerator;
 
 import com.prokofeva.notificationservice.client.DbEventsClient;
 import com.prokofeva.notificationservice.dto.EventDto;
@@ -12,9 +12,9 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @Service
-public class ReportGeneratorEventType extends ReportGeneratorBase {
+public class ReportGeneratorPerson extends ReportGeneratorBase {
 
-    public ReportGeneratorEventType(DbEventsClient dbEventsClient) {
+    public ReportGeneratorPerson(DbEventsClient dbEventsClient) {
         super(dbEventsClient);
     }
 
@@ -37,4 +37,5 @@ public class ReportGeneratorEventType extends ReportGeneratorBase {
     Report generateReport(List<@Valid EventDto> data) {
         return null;
     }
+
 }

@@ -23,13 +23,12 @@ public class MapperEvent {
                 .title(dto.getTitle())
                 .owner(owner)
                 .eventType(eventType)
-                .dateStart(dto.getDateStart())
-                .dateEnd(dto.getDateEnd())
+                .dateEvent(dto.getDateEvent())
                 .startTime(dto.getStartTime())
                 .endTime(dto.getEndTime())
                 .description(dto.getDescription())
                 .location(dto.getLocation())
-                .active(Objects.isNull(dto.isActive()) || dto.isActive())
+                .active(Objects.isNull(dto.getActive()) || dto.getActive())
                 .build();
     }
 
@@ -39,8 +38,7 @@ public class MapperEvent {
                 .title(entity.getTitle())
                 .ownerName(entity.getOwner().getName())
                 .eventTypeName(entity.getEventType().getName())
-                .dateStart(entity.getDateStart())
-                .dateEnd(entity.getDateEnd())
+                .dateEvent(entity.getDateEvent())
                 .startTime(entity.getStartTime())
                 .endTime(entity.getEndTime())
                 .description(entity.getDescription())

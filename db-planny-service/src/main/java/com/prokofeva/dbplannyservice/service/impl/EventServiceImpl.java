@@ -47,7 +47,11 @@ public class EventServiceImpl implements EventService {
     @Override
     @LogRequest
     public List<EventDto> getEventsForReport(EventsForReportRequest request) {
-        // todo
-        return List.of();
+        return eventRepository.getEventsByDateAndTypeAndOwners(request.dateStart(), request.dateEnd(),
+                        request.owners().isEmpty() ? null : request.owners(),
+                        request.eventType())
+                .stream()
+                .map(mapperEvent::toDto)
+                .toList();
     }
 }
