@@ -7,7 +7,7 @@ import java.util.List;
 
 public record NotificationRequest(
         @NotNull
-        String reportTypeCode,
+        String reportTypeName,
         LocalDate date,
         List<String> recipients,
         List<String> owners,

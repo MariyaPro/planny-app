@@ -1,16 +1,15 @@
-package com.prokofeva.notificationservice.service.impl;
-
+package com.prokofeva.notificationservice.service.impl.reportGenerator;
 
 import com.prokofeva.notificationservice.client.DbEventsClient;
 import com.prokofeva.notificationservice.dto.EventDto;
 import com.prokofeva.notificationservice.dto.EventsForReportRequest;
 import com.prokofeva.notificationservice.dto.NotificationRequest;
+import com.prokofeva.notificationservice.exceptions.ProcessException;
 import com.prokofeva.notificationservice.report.Report;
 import com.prokofeva.notificationservice.service.ReportGenerator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,8 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public abstract class ReportGeneratorBase implements ReportGenerator {
     private final DbEventsClient dbEventsClient;
-
-
 
     abstract LocalDate getStartDate(LocalDate day);
 
@@ -31,16 +28,13 @@ public abstract class ReportGeneratorBase implements ReportGenerator {
     abstract Report generateReport(List<@Valid EventDto> data);
 
     @Override
-    public Mono<Report> process(NotificationRequest request) {
+    public Report process(NotificationRequest request) {
         var requestToDb = buildRequestByType(request);
-        var dataFromDb = dbEventsClient.getData(requestToDb, getPath());
-        return dataFromDb
-                .collectList()
-                .map(this::generateReport);
-    }
-
-    String getPath(){
-        return "/events/eventsForReport";
+        var dataFromDb = dbEventsClient.getDataForReport(requestToDb);
+        if(dataFromDb.isEmpty()) {
+            throw new ProcessException("No events for the request.");
+        }
+        return generateReport(dataFromDb);
     }
 
     private EventsForReportRequest buildRequestByType(NotificationRequest request) {

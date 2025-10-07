@@ -1,4 +1,4 @@
-package com.prokofeva.notificationservice.service.impl;
+package com.prokofeva.notificationservice.service.impl.reportGenerator;
 
 import com.prokofeva.notificationservice.client.DbEventsClient;
 import com.prokofeva.notificationservice.dto.EventDto;
@@ -43,18 +43,18 @@ public class ReportGeneratorWeek extends ReportGeneratorBase {
 
     @Override
     Report generateReport(@NotNull List<@Valid EventDto> data) {
-        var weekTitle = buildWeekTitle(data.getFirst().dateStart());
+        var weekTitle = buildWeekTitle(data.getFirst().dateEvent());
         return ReportWeek.builder()
                 .weekTitle(weekTitle)
-                .reportDays(buildData(data))
                 .totalEvents(data.size())
+                .reportDays(buildData(data))
                 .created(LocalDateTime.now())
                 .build();
     }
 
     private ReportDay[] buildData(List<@Valid EventDto> data) {
         return data.stream()
-                .collect(Collectors.groupingBy(EventDto::dateStart))
+                .collect(Collectors.groupingBy(EventDto::dateEvent))
                 .values().stream()
                 .map(this::buildDaysData)
                 .toArray(ReportDay[]::new);
@@ -62,16 +62,14 @@ public class ReportGeneratorWeek extends ReportGeneratorBase {
 
     private ReportDay buildDaysData(List<@Valid EventDto> data) {
         return ReportDay.builder()
-                .dayTitle(buildDayTitle(data.getFirst().dateStart()))
+                .dayTitle(buildDayTitle(data.getFirst().dateEvent()))
                 .totalEvent(data.size())
                 .listEvent(data)
                 .build();
     }
 
-    private String buildWeekTitle(@NotNull LocalDate dateStart) {
-        var monday = dateStart.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        var sunday = dateStart.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-        return String.format("Week: %s + %s.", monday, sunday);
+    private String buildWeekTitle(@NotNull LocalDate dateEvent) {
+        return String.format("Week: %s ... %s", getStartDate(dateEvent), getEndDate(dateEvent));
     }
 
     private String buildDayTitle(@NotNull LocalDate day) {

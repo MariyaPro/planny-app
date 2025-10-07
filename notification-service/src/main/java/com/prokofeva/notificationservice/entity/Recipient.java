@@ -3,7 +3,6 @@ package com.prokofeva.notificationservice.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,9 +27,10 @@ public class Recipient {
     @NotEmpty
     @UniqueElements
     private String name;
-    @Email
-    private String email;
-    private String phone;
+    @NotEmpty
+    @UniqueElements
+    private String codeConfig;
+
     private boolean active;
     @UpdateTimestamp
     private LocalDateTime updated;

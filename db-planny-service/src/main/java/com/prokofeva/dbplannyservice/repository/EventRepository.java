@@ -17,8 +17,22 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
 
     @Query(value = """
             select * from events e
-            where e.date_start <= :endPeriod and e.date_end >= :startPeriod
+            where e.date_event <= :endPeriod and e.date_event >= :startPeriod
             """, nativeQuery = true)
     List<Event> getEventsPeriod(@Param("startPeriod") LocalDate startPeriod,
                                 @Param("endPeriod") LocalDate endPeriod);
+
+    @Query("""
+            select e from Event e
+            where e.dateEvent >= :startPeriod
+                and e.dateEvent <= :endPeriod
+                and e.active=true
+                and e.eventType.active=true
+                and (:owners is null or e.owner.name in :owners)
+                and (:eventType is null or e.eventType.name = :eventType)
+            """)
+    List<Event> getEventsByDateAndTypeAndOwners(@Param("startPeriod") LocalDate startPeriod,
+                                                @Param("endPeriod") LocalDate endPeriod,
+                                                @Param("owners") List<String> owners,
+                                                @Param("eventType") String eventType);
 }

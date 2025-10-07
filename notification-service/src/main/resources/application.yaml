@@ -24,6 +24,21 @@ spring:
 services:
   db-planny-service: "http://localhost:8081/api/db-planny"
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+        loggerLevel: basic
+      dbPlannyService:
+        connectTimeout: 10000
+        readTimeout: 60000
+
+recipient:
+  config:
+    path: "notification-service/src/main/resources/recipient-configs/"
+
 logging:
   file:
     name: logs/log_notification-service

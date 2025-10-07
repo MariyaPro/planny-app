@@ -1,5 +1,6 @@
 package com.prokofeva.dbplannyservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EventDto {
 
     private UUID id;
@@ -25,8 +27,7 @@ public class EventDto {
     @NotEmpty
     private String eventTypeName;
     @NotNull
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
+    private LocalDate dateEvent;
     private LocalTime startTime;
     private LocalTime endTime;
 
@@ -34,7 +35,7 @@ public class EventDto {
     private String location;
 
     @Value(value = "true")
-    private boolean active;
+    private Boolean active;
     private LocalDateTime updated;
 
 }

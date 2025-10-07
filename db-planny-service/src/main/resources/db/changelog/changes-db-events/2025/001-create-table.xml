@@ -57,8 +57,7 @@
                     constraint events_owners_fk references db_events.owners,
                 event_type_id uuid
                     constraint events_event_type_fk references db_events.event_types,
-                date_start    date         not null,
-                date_end      date,
+                date_event    date         not null,
                 start_time    time(6),
                 end_time      time(6),
                 description   varchar(255),

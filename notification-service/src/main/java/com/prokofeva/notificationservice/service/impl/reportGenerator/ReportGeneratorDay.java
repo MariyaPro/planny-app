@@ -1,4 +1,4 @@
-package com.prokofeva.notificationservice.service.impl;
+package com.prokofeva.notificationservice.service.impl.reportGenerator;
 
 import com.prokofeva.notificationservice.client.DbEventsClient;
 import com.prokofeva.notificationservice.dto.EventDto;

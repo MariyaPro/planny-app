@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 public class ReportWeek implements Report {
 
     private String weekTitle;
-    private ReportDay[] reportDays;
     private int totalEvents;
+    private ReportDay[] reportDays;
     private LocalDateTime created;
 
 }

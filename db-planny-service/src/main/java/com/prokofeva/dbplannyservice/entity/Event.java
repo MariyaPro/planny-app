@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
@@ -33,8 +34,8 @@ public class Event {
     @ManyToOne
     private EventType eventType;
 
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
+    @NotNull
+    private LocalDate dateEvent;
     private LocalTime startTime;
     private LocalTime endTime;
 

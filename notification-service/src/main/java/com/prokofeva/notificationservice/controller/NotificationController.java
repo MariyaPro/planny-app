@@ -20,7 +20,7 @@ public class NotificationController {
     @PostMapping("/reportByFilter")
     @LogRequest
     public ResponseEntity<Object> sendNotification(@RequestBody @Valid NotificationRequest request) {
-        notificationFacade.sendNotification(request);
+      notificationFacade.sendNotification(request);
         return ResponseEntity.ok().build();
     }
 }

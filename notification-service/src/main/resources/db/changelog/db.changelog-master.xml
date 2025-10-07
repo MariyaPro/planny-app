@@ -7,5 +7,8 @@
 
     <include file="/db/changelog/changes-notification/2025/001-create-table.xml"/>
     <include file="/db/changelog/changes-notification/2025/002-init-data.xml"/>
+    <include file="/db/changelog/changes-notification/2025/003-edit-recipients.xml"/>
+    <include file="/db/changelog/changes-notification/2025/004-init_data_recipients.xml"/>
+    <include file="/db/changelog/changes-notification/2025/005-create_table_subscriptions.xml"/>
 
 </databaseChangeLog>

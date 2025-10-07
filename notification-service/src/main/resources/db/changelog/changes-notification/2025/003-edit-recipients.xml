@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-003-001" author="mprokofeva">
+        <sql>
+            alter table notifications.recipients add column code_config varchar(50) not null unique ;
+        </sql>
+        <rollback>
+            <sql>
+                alter table notifications.recipients drop column code_config;
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-002" author="mprokofeva">
+        <sql>
+            alter table notifications.recipients drop column email;
+            alter table notifications.recipients drop column phone;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
