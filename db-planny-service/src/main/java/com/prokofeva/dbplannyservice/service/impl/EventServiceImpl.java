@@ -2,12 +2,15 @@ package com.prokofeva.dbplannyservice.service.impl;
 
 import com.prokofeva.dbplannyservice.dto.EventDto;
 import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
+import com.prokofeva.dbplannyservice.entity.Event;
 import com.prokofeva.dbplannyservice.mapper.MapperEvent;
 import com.prokofeva.dbplannyservice.repository.EventRepository;
 import com.prokofeva.dbplannyservice.service.EventService;
+import com.prokofeva.dbplannyservice.specifications.EventSpecifications;
 import com.prokofeva.dbplannyservice.util.LogRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -45,13 +48,22 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @LogRequest
+    @LogRequest(level = LogRequest.LogLevel.DEBUG)
     public List<EventDto> getEventsForReport(EventsForReportRequest request) {
-        return eventRepository.getEventsByDateAndTypeAndOwners(request.dateStart(), request.dateEnd(),
-                        request.owners().isEmpty() ? null : request.owners(),
-                        request.eventType())
-                .stream()
+        Specification<Event> spec = Specification.allOf(
+                EventSpecifications.dateAfterOrEqual(request.dateStart()),
+                EventSpecifications.dateBeforeOrEqual(request.dateEnd()),
+                EventSpecifications.isActive()
+        );
+        if (request.eventType() != null) {
+            spec = spec.and(EventSpecifications.eventType(request.eventType()));
+        }
+        if (request.owners() != null && !request.owners().isEmpty()) {
+            spec = spec.and(EventSpecifications.ownersInList(request.owners()));
+        }
+        return eventRepository.findAll(spec).stream()
                 .map(mapperEvent::toDto)
                 .toList();
     }
+
 }

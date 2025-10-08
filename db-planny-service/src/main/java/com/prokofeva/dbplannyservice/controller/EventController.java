@@ -34,7 +34,7 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsPeriod(startPeriod, endPeriod));
     }
 
-    @GetMapping("/category")
+    @GetMapping("/typeEvents")
     @LogRequest(logParameters = false, logResult = false)
     public ResponseEntity<Object> getEventsByEventType(@RequestParam String eventType) {
         return ResponseEntity.ok().body(eventService.getEventsByEventType(eventType));
