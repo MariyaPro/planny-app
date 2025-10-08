@@ -31,9 +31,6 @@ feign:
         connectTimeout: 5000
         readTimeout: 30000
         loggerLevel: basic
-      dbPlannyService:
-        connectTimeout: 10000
-        readTimeout: 60000
 
 recipient:
   config:

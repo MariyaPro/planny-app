@@ -4,13 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum ReportTypeCode {
-    CUSTOM_REPORT("custom"),
+    FREE_REPORT("free"),
     WEEK_REPORT("week"),
     DAY_REPORT("day"),
-    EVENT_TYPE_REPORT("type"),
-    PERSON_REPORT("person");
+    MONTH_REPORT("month");
 
-    public final String name;
+    private final String name;
 
     ReportTypeCode(String name) {
         this.name = name;
@@ -22,6 +21,6 @@ public enum ReportTypeCode {
                 return reportTypeCode;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Invalid report type code: " + name);
     }
 }

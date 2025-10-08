@@ -28,8 +28,7 @@ public class Subscription {
     @JoinColumn(name = "report_type_id")
     private ReportType reportType;
     private String deliveryMethod;
-    @Column(name = "active")
-    private boolean isActive;
+    private boolean active;
     @UpdateTimestamp
     private LocalDateTime updated;
 }
