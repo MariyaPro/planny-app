@@ -56,7 +56,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
         }
         var weekTitle = buildTitle(requestToDb);
         return ReportPeriod.builder()
-                .weekTitle(weekTitle)
+                .title(weekTitle)
                 .totalEvents(data.size())
                 .reportDays(buildData(data))
                 .created(LocalDateTime.now())
@@ -86,7 +86,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
 
     private String buildDayTitle(LocalDate day) {
         return String.format("[%s] - %s",
-                day.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ROOT),
+                day.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
                 day.format(DateTimeFormatter.ISO_DATE));
     }
 
