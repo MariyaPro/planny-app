@@ -1,6 +1,5 @@
 package com.prokofeva.notificationservice.client;
 
-import com.prokofeva.notificationservice.config.DbEventsFeignConfig;
 import com.prokofeva.notificationservice.dto.EventDto;
 import com.prokofeva.notificationservice.dto.EventsForReportRequest;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,8 +10,7 @@ import java.util.List;
 
 @FeignClient(
         name = "dbPlannyService",
-        url = "${services.db-planny-service}",
-        configuration = DbEventsFeignConfig.class
+        url = "${services.db-planny-service}"
 )
 public interface DbEventsClient {
     @PostMapping("/events/eventsForReport")

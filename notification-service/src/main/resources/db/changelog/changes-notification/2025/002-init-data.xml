@@ -30,22 +30,22 @@
     <changeSet id="2025-002-003" author="mprokofeva">
         <sql>
             insert into notifications.report_types (id, name, description, updated)
-            values (gen_random_uuid(),'person','персональный план', current_timestamp)
+            values (gen_random_uuid(),'month','план на месяц', current_timestamp)
         </sql>
         <rollback>
             <sql>
-                drop from notifications.report_types where name='person'
+                drop from notifications.report_types where name='month'
             </sql>
         </rollback>
     </changeSet>
     <changeSet id="2025-002-004" author="mprokofeva">
         <sql>
             insert into notifications.report_types (id, name, description, updated)
-            values (gen_random_uuid(),'event type','события одного типа', current_timestamp)
+            values (gen_random_uuid(),'free','произвольный период', current_timestamp)
         </sql>
         <rollback>
             <sql>
-                drop from notifications.report_types where name='person'
+                drop from notifications.report_types where name='free'
             </sql>
         </rollback>
     </changeSet>

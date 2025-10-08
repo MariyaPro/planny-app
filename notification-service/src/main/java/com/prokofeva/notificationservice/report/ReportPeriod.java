@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 @Builder
 @Getter
-public class ReportWeek implements Report {
+public class ReportPeriod implements Report {
 
-    private String weekTitle;
+    private String title;
     private int totalEvents;
     private ReportDay[] reportDays;
     private LocalDateTime created;

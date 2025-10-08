@@ -1,19 +1,16 @@
 package com.prokofeva.notificationservice.facade;
 
 import com.prokofeva.notificationservice.dto.NotificationRequest;
-import com.prokofeva.notificationservice.dto.RecipientConfig;
 import com.prokofeva.notificationservice.enums.ReportTypeCode;
+import com.prokofeva.notificationservice.exceptions.ProcessStopException;
+import com.prokofeva.notificationservice.service.DbEventsService;
 import com.prokofeva.notificationservice.service.NotificationService;
-import com.prokofeva.notificationservice.service.ReportTypeService;
-import com.prokofeva.notificationservice.service.impl.reportGenerator.ReportGeneratorFactory;
-import com.prokofeva.notificationservice.service.impl.sender.SenderServiceFactory;
+import com.prokofeva.notificationservice.service.ReportGenerator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -21,20 +18,27 @@ import java.util.Objects;
 @Slf4j
 public class NotificationFacade {
     private final NotificationService notificationService;
-    private final ReportGeneratorFactory reportGeneratorFactory;
-    private final ReportTypeService reportTypeService;
-    private final SenderServiceFactory senderServiceFactory;
+    private final ReportGenerator reportGenerator;
+    private final DbEventsService dbEventsService;
 
     public void sendNotification(@Valid NotificationRequest request) {
-        var reportType = reportTypeService.findByName(request.reportTypeName());
-        Map<String, List<RecipientConfig>> mapDeliveryMethodConfig = notificationService.getDeliveryMethodConfigs(reportType.name(), request.recipients());
-
-        var reportTypeCode = Objects.requireNonNull(ReportTypeCode.getReportTypeByName(request.reportTypeName()));
-        var reportGenerator = reportGeneratorFactory.getReportGenerator(reportTypeCode);
-        var report = reportGenerator.process(request);
-
-        mapDeliveryMethodConfig.forEach((deliveryMethod, configs) -> senderServiceFactory.getSender(deliveryMethod).sendMessage(report, configs));
-
+        try {
+            var reportTypeCode = Objects.requireNonNull(ReportTypeCode.getReportTypeByName(request.periodName()));
+            var requestToDb = reportGenerator.buildRequestByType(reportTypeCode, request);
+            var dataFromDb = dbEventsService.getDataForReport(requestToDb);
+            if (dataFromDb == null || dataFromDb.isEmpty()) {
+                throw new ProcessStopException("No data found for period.");
+            }
+            var report = reportGenerator.generateReport(requestToDb, dataFromDb);
+            //todo save to Mongo
+            var mapDeliveryMethodConfig =
+                    notificationService.getDeliveryMethodConfigs(reportTypeCode.getName(), request.recipients());
+            notificationService.sendReport(report, mapDeliveryMethodConfig);
+        } catch (ProcessStopException e) {
+            log.info(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
 }
