@@ -36,6 +36,10 @@ recipient:
   config:
     path: "notification-service/src/main/resources/recipient-configs/"
 
+cron:
+  daily-report: "0 0 8 * * *"   # каждый день в 8,00 на сегодня
+  weekly-report: "0 0 21 * * 0" # каждое воскресенье в 21,00 на следующую неделю
+
 logging:
   file:
     name: logs/log_notification-service
