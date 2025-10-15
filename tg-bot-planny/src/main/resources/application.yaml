@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8083
 
 spring:
   application:
-    name: db-planny-service
+    name: tg-bot-planny
   datasource:
     hikari:
       minimum-idle: 3
@@ -21,6 +21,21 @@ spring:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
 
+services:
+  db-planny-service: "http://localhost:8081/api/db-planny"
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+        loggerLevel: basic
+
+telegrambot:
+  prop:
+    path: ${TELEGRAM_BOT_CONFIG}
+
 logging:
   file:
-    name: logs/log_db-planny-service
+    name: logs/log_tg-bot-planny

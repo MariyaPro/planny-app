@@ -8,9 +8,9 @@ spring:
     hikari:
       minimum-idle: 3
       maximum-pool-size: 6
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: planny
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -34,7 +34,7 @@ feign:
 
 recipient:
   config:
-    path: "notification-service/src/main/resources/recipient-configs/"
+    path: ${RECIPIENT_CONFIG_PATH}
 
 cron:
   daily-report: "0 0 8 * * *"   # каждый день в 8,00 на сегодня
