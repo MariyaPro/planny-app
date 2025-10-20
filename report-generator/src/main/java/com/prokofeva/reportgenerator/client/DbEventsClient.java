@@ -1,7 +1,7 @@
-package com.prokofeva.notificationservice.client;
+package com.prokofeva.reportgenerator.client;
 
-import com.prokofeva.notificationservice.dto.EventDto;
-import com.prokofeva.notificationservice.dto.EventsForReportRequest;
+import com.prokofeva.reportgenerator.dto.EventDto;
+import com.prokofeva.reportgenerator.dto.ReportRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,5 +14,5 @@ import java.util.List;
 )
 public interface DbEventsClient {
     @PostMapping("/events/eventsForReport")
-    List<EventDto> getDataForReport(@RequestBody EventsForReportRequest requestBody);
+    List<EventDto> getDataForReport(@RequestBody ReportRequest requestBody);
 }

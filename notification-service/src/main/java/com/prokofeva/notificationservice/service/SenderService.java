@@ -1,8 +1,9 @@
 package com.prokofeva.notificationservice.service;
 
 import com.prokofeva.notificationservice.dto.RecipientConfig;
-import com.prokofeva.notificationservice.report.Report;
+
+import java.util.UUID;
 
 public interface SenderService {
-    void sendMessage(Report report, RecipientConfig config);
+    void sendMessage(UUID reportId, RecipientConfig config);
 }

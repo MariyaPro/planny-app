@@ -1,0 +1,26 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: report-generator
+  data:
+    mongodb:
+      password: mongo_planny
+      database: planny-mongo
+      uri: mongodb://localhost:27017/mongodb
+
+services:
+  db-planny-service: "http://localhost:8081/api/db-planny"
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+        loggerLevel: basic
+
+logging:
+  file:
+    name: logs/log_report-generator
