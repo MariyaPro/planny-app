@@ -22,13 +22,22 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/report-generator" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tg-bot-planny" />
         <option name="gradleJvm" value="temurin-23" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/report-generator" />
+            <option value="$PROJECT_DIR$/tg-bot-planny" />
           </set>
         </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+         <option name="externalProjectPath" value="$PROJECT_DIR$/report-generator" />
+         <option name="gradleJvm" value="temurin-23" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$/report-generator" />
+           </set>
+         </option>
       </GradleProjectSettings>
     </option>
   </component>

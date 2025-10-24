@@ -1,9 +1,9 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
-    name: notification-service
+    name: tg-bot-planny
   datasource:
     hikari:
       minimum-idle: 3
@@ -20,9 +20,13 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+  data:
+    mongodb:
+      uri: "mongodb://${MONGO_USER}:${MONGO_PASSWORD}@localhost:27017/"
+      database: "mongodb"
 
 services:
-  report-generator-service: "http://localhost:8084/api/report-generator"
+  report-generator: "http://localhost:8084/api/report-generator"
 
 feign:
   client:
@@ -32,14 +36,10 @@ feign:
         readTimeout: 30000
         loggerLevel: basic
 
-recipient:
-  config:
-    path: ${RECIPIENT_CONFIG_PATH}
-
-cron:
-  daily-report: "0 0 8 * * *"   # каждый день в 8,00 на сегодня
-  weekly-report: "0 0 21 * * 0" # каждое воскресенье в 21,00 на следующую неделю
+telegrambot:
+  prop:
+    path: ${TELEGRAM_BOT_CONFIG}
 
 logging:
   file:
-    name: logs/log_notification-service
+    name: logs/log_tg-bot-planny
