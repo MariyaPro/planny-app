@@ -14,12 +14,14 @@ public class CustomExceptionHandler {
     @ExceptionHandler(ProcessFailException.class)
     public ResponseEntity<Object> processFailExceptionHandle(ProcessFailException e) {
         log.error(e.getMessage());
+
         return ResponseEntity.status(400).body(e.getMessage());
     }
 
     @ExceptionHandler(ProcessStopException.class)
     public ResponseEntity<Object> processStopExceptionHandle(ProcessStopException e) {
         log.info(e.getMessage());
+
         return ResponseEntity.ok(e.getMessage());
     }
 
@@ -37,6 +39,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> exceptionHandle(Exception e) {
         log.error(e.getMessage());
+
         return ResponseEntity.status(500).body(e.getMessage());
     }
 

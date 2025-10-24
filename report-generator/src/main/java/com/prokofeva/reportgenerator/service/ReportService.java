@@ -1,8 +1,8 @@
 package com.prokofeva.reportgenerator.service;
 
-import java.util.UUID;
+import com.prokofeva.reportgenerator.enums.MessageFormat;
 
 public interface ReportService {
 
-    UUID save(String report);
+    String save(MessageFormat format, String report);
 }

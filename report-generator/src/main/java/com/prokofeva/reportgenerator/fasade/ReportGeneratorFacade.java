@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -20,15 +18,15 @@ public class ReportGeneratorFacade {
     private final GeneratorFormatFactory generatorFormatFactory;
     private final ReportService reportService;
 
-    public UUID startProcess(MessageFormat format, ReportRequest request) {
+    public String startProcess(MessageFormat format, ReportRequest request) {
         var dataFromDb = dbEventsService.getDataForReport(request);
         if (dataFromDb == null || dataFromDb.isEmpty()) {
             throw new ProcessStopException("No data found for period.");
         }
         var generator = generatorFormatFactory.getGeneratorByFormat(format);
         var report = generator.generate(request, dataFromDb);
-        // todo save
-        UUID reportId = reportService.save(report);
+        log.debug("Report: {}", report);
+        var reportId = reportService.save(format, report);
         log.info("Success. Report ID: {}", reportId);
         return reportId;
     }

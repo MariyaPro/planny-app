@@ -4,9 +4,11 @@ import com.prokofeva.reportgenerator.dto.ReportRequest;
 import com.prokofeva.reportgenerator.enums.MessageFormat;
 import com.prokofeva.reportgenerator.fasade.ReportGeneratorFacade;
 import com.prokofeva.reportgenerator.util.LogRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,19 +20,19 @@ public class ReportGeneratorController {
 
     @PostMapping("/generate-xml")
     @LogRequest
-    public ResponseEntity<Object> generateReportXml(ReportRequest request) {
+    public ResponseEntity<Object> generateReportXml(@RequestBody @Valid ReportRequest request) {
         return ResponseEntity.ok().body(reportGeneratorFacade.startProcess(MessageFormat.XML, request));
     }
 
     @PostMapping("/generate-json")
     @LogRequest
-    public ResponseEntity<Object> generateReportJson(ReportRequest request) {
+    public ResponseEntity<Object> generateReportJson(@RequestBody @Valid ReportRequest request) {
         return ResponseEntity.ok().body(reportGeneratorFacade.startProcess(MessageFormat.JSON, request));
     }
 
     @PostMapping("/generate-txt")
     @LogRequest
-    public ResponseEntity<Object> generateReportTxt(ReportRequest request) {
+    public ResponseEntity<Object> generateReportTxt(@RequestBody @Valid ReportRequest request) {
         return ResponseEntity.ok().body(reportGeneratorFacade.startProcess(MessageFormat.TXT, request));
     }
 

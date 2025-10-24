@@ -6,9 +6,8 @@ spring:
     name: report-generator
   data:
     mongodb:
-      password: mongo_planny
-      database: planny-mongo
-      uri: mongodb://localhost:27017/mongodb
+      uri: "mongodb://${MONGO_USER}:${MONGO_PASSWORD}@localhost:27017/"
+      database: "mongodb"
 
 services:
   db-planny-service: "http://localhost:8081/api/db-planny"
@@ -24,3 +23,5 @@ feign:
 logging:
   file:
     name: logs/log_report-generator
+#  level:
+#    org.springframework.data.mongodb: DEBUG
