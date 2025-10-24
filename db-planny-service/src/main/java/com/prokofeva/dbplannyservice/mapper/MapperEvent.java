@@ -37,7 +37,7 @@ public class MapperEvent {
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .ownerName(entity.getOwner().getName())
-                .eventTypeName(entity.getEventType().getName())
+                .eventTypeName(entity.getEventType()==null? null : entity.getEventType().getName())
                 .dateEvent(entity.getDateEvent())
                 .startTime(entity.getStartTime())
                 .endTime(entity.getEndTime())
