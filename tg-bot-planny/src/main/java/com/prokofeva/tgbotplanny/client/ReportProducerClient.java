@@ -1,13 +1,15 @@
 package com.prokofeva.tgbotplanny.client;
 
+import com.prokofeva.tgbotplanny.dto.ReportRequest;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
         name = "reportProducerService",
-        url = "${services.db-planny-service}"
+        url = "${services.report-generator}"
 )
 public interface ReportProducerClient {
-    //todo
-//    @PostMapping("/events/eventsForReport")
-//    List<EventDto> getDataForReport(@RequestBody EventsForReportRequest requestBody);
+    @PostMapping("/generate-json")
+    String generateReportJson(@RequestBody ReportRequest requestBody);
 }

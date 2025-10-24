@@ -20,9 +20,13 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+  data:
+    mongodb:
+      uri: "mongodb://${MONGO_USER}:${MONGO_PASSWORD}@localhost:27017/"
+      database: "mongodb"
 
 services:
-  db-planny-service: "http://localhost:8081/api/db-planny"
+  report-generator: "http://localhost:8084/api/report-generator"
 
 feign:
   client:
