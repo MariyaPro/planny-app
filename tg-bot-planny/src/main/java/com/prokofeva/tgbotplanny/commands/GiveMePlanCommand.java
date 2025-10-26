@@ -1,34 +1,40 @@
 package com.prokofeva.tgbotplanny.commands;
 
-import com.prokofeva.tgbotplanny.client.ReportProducerClient;
-import com.prokofeva.tgbotplanny.dto.ReportRequest;
-import com.prokofeva.tgbotplanny.service.ReportService;
+import com.prokofeva.tgbotplanny.BotPlanny;
+import com.prokofeva.tgbotplanny.enums.ReportTypeCode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GiveMePlanCommand implements Command {
-    private final ReportProducerClient reportProducerClient;
-    private final ReportService reportService;
 
     @Override
-    public String execute(String msg) {
-        var request = generateRequest();
-        var id = getReportId(request);
-        return reportService.getContent(id);
+    public void execute(BotPlanny botPlanny, Long userId, String msg) {
+        askParam(botPlanny, userId);
     }
 
-    private String getReportId(ReportRequest request) {
-        return reportProducerClient.generateReportJson(request);
-    }
-
-    private ReportRequest generateRequest() {
-        return ReportRequest.builder()
-                .dateStart(LocalDate.now())
-                .dateEnd(LocalDate.now().plusDays(6))
+    public void askParam(BotPlanny botPlanny, Long userId) {
+        var keyboardIn = Arrays.stream(ReportTypeCode.values())
+                .map(m -> InlineKeyboardButton.builder()
+                        .text(m.getDescription())
+                        .callbackData(m.name())
+                        .build())
+                .toList();
+        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
+                .clearKeyboard()
+                .keyboard(List.of(keyboardIn))
+//                .keyboardRow(keyboardIn)
                 .build();
+
+       botPlanny.sendKeyboard(userId, inlineKeyboardMarkup);
     }
+
 }

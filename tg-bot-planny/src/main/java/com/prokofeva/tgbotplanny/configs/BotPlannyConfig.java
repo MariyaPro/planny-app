@@ -2,6 +2,7 @@ package com.prokofeva.tgbotplanny.configs;
 
 import com.prokofeva.tgbotplanny.BotPlanny;
 import com.prokofeva.tgbotplanny.commands.CommandFactory;
+import com.prokofeva.tgbotplanny.facade.ReportFacade;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +22,8 @@ public class BotPlannyConfig {
     private String token;
 
     @Bean
-    public BotPlanny botPlanny(CommandFactory factory) throws TelegramApiException {
-        BotPlanny botPlanny = new BotPlanny(factory);
+    public BotPlanny botPlanny(CommandFactory factory, ReportFacade reportFacade) throws TelegramApiException {
+        BotPlanny botPlanny = new BotPlanny(factory, reportFacade);
         botPlanny.setName(name);
         botPlanny.setToken(token);
 
@@ -30,6 +31,6 @@ public class BotPlannyConfig {
         botsApi.registerBot(botPlanny);
 
         botPlanny.sendText(Long.parseLong(id), "Привет!");
-        return new BotPlanny(factory);
+        return botPlanny;
     }
 }

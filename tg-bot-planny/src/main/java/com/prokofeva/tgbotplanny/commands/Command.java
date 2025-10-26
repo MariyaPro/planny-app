@@ -1,6 +1,8 @@
 package com.prokofeva.tgbotplanny.commands;
 
+import com.prokofeva.tgbotplanny.BotPlanny;
+
 public interface Command {
 
-    String execute(String msg);
+    void execute(BotPlanny botPlanny, Long id, String msg);
 }
