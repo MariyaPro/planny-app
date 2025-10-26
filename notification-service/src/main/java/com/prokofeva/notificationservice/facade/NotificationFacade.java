@@ -28,11 +28,11 @@ public class NotificationFacade {
             var reportTypeCode = Objects.requireNonNull(ReportTypeCode.getReportTypeByName(request.periodName()));
             Set<String> msgFormats = new HashSet<>();
             var mapDeliveryMethodConfig =
-                    notificationService.getDeliveryMethodConfigs(reportTypeCode.getName(), request.recipients(),msgFormats);
+                    notificationService.getDeliveryMethodConfigs(reportTypeCode.getName(), request.recipients(), msgFormats);
             var reportRequest = buildRequestByType(reportTypeCode, request);
-            Map<MessageFormat,UUID> mapReports = new HashMap<>();
-            msgFormats.forEach(msgFormat ->{
-                try{
+            Map<MessageFormat, UUID> mapReports = new HashMap<>();
+            msgFormats.forEach(msgFormat -> {
+                try {
                     MessageFormat format = MessageFormat.valueOf(msgFormat);
                     UUID reportId = switch (format) {
                         case TXT -> reportGeneratorClient.generateReportTxt(reportRequest);
@@ -40,7 +40,7 @@ public class NotificationFacade {
                         case JSON -> reportGeneratorClient.generateReportJson(reportRequest);
                     };
                     mapReports.put(format, reportId);
-                }catch (Exception e){
+                } catch (Exception e) {
                     log.error(e.getMessage());
                 }
             });
@@ -54,9 +54,13 @@ public class NotificationFacade {
 
     private ReportRequest buildRequestByType(ReportTypeCode reportTypeCode, NotificationRequest request) {
         try {
-            var startDate = request.date() == null ? LocalDate.now() : request.date();
+            var startDate = switch (reportTypeCode) {
+                case FREE_REPORT -> request.date();
+                case WEEK_REPORT, MONTH_REPORT, TODAY_REPORT -> LocalDate.now();
+                case TOMORROW_REPORT -> LocalDate.now().plusDays(1);
+            };
             var endDate = switch (reportTypeCode) {
-                case DAY_REPORT -> startDate;
+                case TODAY_REPORT , TOMORROW_REPORT -> startDate;
                 case WEEK_REPORT -> startDate.plusDays(6);
                 case MONTH_REPORT -> startDate.plusMonths(1);
                 case FREE_REPORT -> Objects.isNull(request.endDate()) ? LocalDate.now() : request.endDate();

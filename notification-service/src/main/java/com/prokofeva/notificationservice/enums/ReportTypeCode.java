@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum ReportTypeCode {
     FREE_REPORT("free"),
     WEEK_REPORT("week"),
-    DAY_REPORT("day"),
+    TODAY_REPORT("today"),
+    TOMORROW_REPORT("tomorrow"),
     MONTH_REPORT("month");
 
     private final String name;

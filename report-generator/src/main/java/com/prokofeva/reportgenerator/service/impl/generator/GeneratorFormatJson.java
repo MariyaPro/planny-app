@@ -2,6 +2,7 @@ package com.prokofeva.reportgenerator.service.impl.generator;
 
 import com.prokofeva.reportgenerator.dto.EventDto;
 import com.prokofeva.reportgenerator.dto.ReportRequest;
+import com.prokofeva.reportgenerator.report.Report;
 import com.prokofeva.reportgenerator.report.ReportDay;
 import com.prokofeva.reportgenerator.report.ReportPeriod;
 import com.prokofeva.reportgenerator.service.GeneratorFormat;
@@ -26,18 +27,21 @@ public class GeneratorFormatJson implements GeneratorFormat {
 
     @Override
     public String generate(ReportRequest request, List<EventDto> data) {
+        var report = buildReport(request, data);
+        return Util.toJson(report);
+    }
+
+    private Report buildReport(ReportRequest request, List<EventDto> data) {
         if (Objects.equals(request.dateStart(), request.dateEnd())) {
-            var report = buildDaysData(data);
-            return Util.toJson(report);
+            return buildDaysData(data);
         }
         var weekTitle = buildTitle(request);
-        var report = ReportPeriod.builder()
+        return ReportPeriod.builder()
                 .title(weekTitle)
                 .totalEvents(data.size())
                 .reportDays(buildData(data))
                 .created(LocalDateTime.now())
                 .build();
-        return Util.toJson(report);
     }
 
     private ReportDay[] buildData(List<EventDto> data) {

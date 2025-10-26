@@ -12,4 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface ReportProducerClient {
     @PostMapping("/generate-json")
     String generateReportJson(@RequestBody ReportRequest requestBody);
+
+    @PostMapping("/generate-txt")
+    String generateReportTxt(@RequestBody ReportRequest requestBody);
 }
