@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/db-planny-service.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/notification-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notification-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/planny-app.iml" filepath="$PROJECT_DIR$/planny-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/report-generator.main.iml" filepath="$PROJECT_DIR$/.idea/modules/report-generator.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tg-bot-planny.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tg-bot-planny.main.iml" />

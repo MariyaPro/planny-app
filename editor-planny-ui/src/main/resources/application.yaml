@@ -1,0 +1,24 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: editor-planny-ui
+  thymeleaf:
+    cache: true
+
+services:
+  db-planny-service: "http://localhost:8081/api/db-planny"
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+        loggerLevel: basic
+
+
+logging:
+  file:
+    name: logs/log_editor-planny-ui
