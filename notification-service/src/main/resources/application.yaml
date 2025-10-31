@@ -8,9 +8,9 @@ spring:
     hikari:
       minimum-idle: 3
       maximum-pool-size: 6
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: planny
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -22,7 +22,7 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
 
 services:
-  db-planny-service: "http://localhost:8081/api/db-planny"
+  report-generator-service: "http://localhost:8084/api/report-generator"
 
 feign:
   client:
@@ -31,13 +31,14 @@ feign:
         connectTimeout: 5000
         readTimeout: 30000
         loggerLevel: basic
-      dbPlannyService:
-        connectTimeout: 10000
-        readTimeout: 60000
 
 recipient:
   config:
-    path: "notification-service/src/main/resources/recipient-configs/"
+    path: ${RECIPIENT_CONFIG_PATH}
+
+cron:
+  daily-report: "0 0 8 * * *"   # каждый день в 8,00 на сегодня
+  weekly-report: "0 0 21 * * 0" # каждое воскресенье в 21,00 на следующую неделю
 
 logging:
   file:

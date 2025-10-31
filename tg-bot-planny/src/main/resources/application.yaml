@@ -1,0 +1,45 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: tg-bot-planny
+  datasource:
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 6
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: off
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.xml
+  data:
+    mongodb:
+      uri: "mongodb://${MONGO_USER}:${MONGO_PASSWORD}@localhost:27017/"
+      database: "mongodb"
+
+services:
+  report-generator: "http://localhost:8084/api/report-generator"
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+        loggerLevel: basic
+
+telegrambot:
+  prop:
+    path: ${TELEGRAM_BOT_CONFIG}
+
+logging:
+  file:
+    name: logs/log_tg-bot-planny

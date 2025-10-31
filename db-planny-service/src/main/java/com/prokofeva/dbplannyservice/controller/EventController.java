@@ -1,8 +1,9 @@
 package com.prokofeva.dbplannyservice.controller;
 
-import com.prokofeva.dbplannyservice.dto.EventDto;
+import com.prokofeva.dbplannyservice.dto.EventRequest;
 import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
 import com.prokofeva.dbplannyservice.service.EventService;
+import com.prokofeva.dbplannyservice.service.OwnerService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +20,12 @@ import java.time.LocalDate;
 @Slf4j
 public class EventController {
     private final EventService eventService;
+    private final OwnerService ownerService;
 
     @PostMapping("/")
     @LogRequest(logParameters = false)
-    public ResponseEntity<Object> createEvent(@RequestBody @Valid EventDto eventDto) {
-        eventService.createEvent(eventDto);
+    public ResponseEntity<Object> createEvent(@RequestBody @Valid EventRequest eventRequest) {
+        eventService.createEvent(eventRequest.eventDtos());
         return ResponseEntity.ok().build();
     }
 
@@ -34,7 +36,7 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsPeriod(startPeriod, endPeriod));
     }
 
-    @GetMapping("/category")
+    @GetMapping("/typeEvents")
     @LogRequest(logParameters = false, logResult = false)
     public ResponseEntity<Object> getEventsByEventType(@RequestParam String eventType) {
         return ResponseEntity.ok().body(eventService.getEventsByEventType(eventType));
@@ -46,4 +48,9 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsForReport(request));
     }
 
+    @GetMapping("/owners")
+    @LogRequest
+    public ResponseEntity<Object> getOwners() {
+        return ResponseEntity.ok(ownerService.findAllActive());
+    }
 }
