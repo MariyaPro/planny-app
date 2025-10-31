@@ -21,8 +21,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(ProcessStopException.class)
     public ResponseEntity<Object> processStopExceptionHandle(ProcessStopException e) {
         log.info(e.getMessage());
-
-        return ResponseEntity.ok(e.getMessage());
+        return ResponseEntity.ok().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
