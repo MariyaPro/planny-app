@@ -61,9 +61,9 @@ public class BotPlanny extends TelegramLongPollingBot {
         }
     }
 
-    public void sendKeyboard(Long who, ReplyKeyboard keyboard) {
+    public void sendKeyboard(Long who, ReplyKeyboard keyboard, String what) {
         var sm = SendMessage.builder()
-                .text("какой план тебе нужен?")
+                .text(what)
                 .replyMarkup(keyboard)
                 .chatId(who.toString())
                 .build();

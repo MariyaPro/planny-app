@@ -7,8 +7,8 @@ public enum ReportTypeCode {
 
     TODAY_REPORT("на сегодня"),
     TOMORROW_REPORT("на завтра"),
-    WEEK_REPORT("на неделю"),
-    MONTH_REPORT("на месяц");
+    WEEK_REPORT("на неделю");
+//    MONTH_REPORT("на месяц");
     //    FREE_REPORT("произвольный период")
 
     private final String description;

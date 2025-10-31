@@ -31,10 +31,9 @@ public class GiveMePlanCommand implements Command {
         InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
                 .clearKeyboard()
                 .keyboard(List.of(keyboardIn))
-//                .keyboardRow(keyboardIn)
                 .build();
 
-       botPlanny.sendKeyboard(userId, inlineKeyboardMarkup);
+       botPlanny.sendKeyboard(userId, inlineKeyboardMarkup, "какой план тебе нужен?");
     }
 
 }
