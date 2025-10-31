@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface EventService {
-    void createEvent(EventDto eventDto);
+    void createEvent(List<EventDto> eventRequest);
 
     List<EventDto> getEventsPeriod(LocalDate startPeriod, LocalDate endPeriod);
 

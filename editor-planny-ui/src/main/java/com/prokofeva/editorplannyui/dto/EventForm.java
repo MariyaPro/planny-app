@@ -1,20 +1,23 @@
 package com.prokofeva.editorplannyui.dto;
 
+import com.prokofeva.editorplannyui.enums.Recurrence;
 import lombok.Builder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Builder
-public record EventDto(
+public record EventForm(
         String title,
         String ownerName,
         String eventTypeName,
-        LocalDate dateEvent,
+        LocalDate startEvent,
+        LocalDate endEvent,
         LocalTime startTime,
         LocalTime endTime,
         String description,
         String location,
-        Boolean active) {
+        Recurrence recurrence
+) {
 
 }

@@ -1,6 +1,6 @@
 package com.prokofeva.editorplannyui.controller;
 
-import com.prokofeva.editorplannyui.dto.EventDto;
+import com.prokofeva.editorplannyui.dto.EventForm;
 import com.prokofeva.editorplannyui.service.EventService;
 import com.prokofeva.editorplannyui.util.LogRequest;
 import lombok.RequiredArgsConstructor;
@@ -29,25 +29,25 @@ public class EditorPlannyUiController {
     @GetMapping("/events/new")
     @LogRequest(logResult = false)
     public String showCreateForm(Model model) {
-        model.addAttribute("eventDto", new EventDto());
+        model.addAttribute("eventForm", EventForm.builder().build());
         return "events-new";
     }
 
     @PostMapping("/events/new")
-    @LogRequest
-    public String createEvent(@ModelAttribute("eventDto") EventDto eventDto,
+//    @LogRequest
+    public String createEvent(@ModelAttribute("eventForm") EventForm eventForm,
                               BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("errorMessage", "Пожалуйста, исправьте ошибки в форме");
             return "events-new";
         }
         try {
-            eventService.save(eventDto);
+            eventService.save(eventForm);
             model.addAttribute("successMessage", "Событие успешно создано!");
             return "redirect:/events?success=true";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Ошибка при создании события: " + e.getMessage());
-            model.addAttribute("eventDto", eventDto);
+            model.addAttribute("eventForm", eventForm);
             return "events-new";
         }
     }

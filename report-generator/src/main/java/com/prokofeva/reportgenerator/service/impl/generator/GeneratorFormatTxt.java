@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +37,8 @@ public class GeneratorFormatTxt implements GeneratorFormat {
         data.stream()
                 .collect(Collectors.groupingBy(EventDto::dateEvent))
                 .values()
-                .forEach(listDay -> reportSb.append("\t-------------\n").append(buildDaysData(listDay)));
+                .stream().sorted(Comparator.comparing(l -> l.getFirst().dateEvent()))
+                .forEach(listDay -> reportSb.append("-----------------\n").append(buildDaysData(listDay)));
 
         return reportSb.toString();
     }
@@ -57,15 +55,16 @@ public class GeneratorFormatTxt implements GeneratorFormat {
     private String buildEventDescription(EventDto eventDto) {
         var evDescription = new StringBuilder();
         evDescription.append(String.format("* %s\n", eventDto.title()))
-                .append(String.format("\t\t\t\t\t\tКто: %s\n", eventDto.ownerName()))
-                .append(String.format("\t\t\t\t\t\tКатегория: %s\n", eventDto.eventTypeName()));
+                .append(String.format("\t\t\t\t\t\tКто: %s\n", eventDto.ownerName()));
+//                .append(String.format("\t\t\t\t\t\tКатегория: %s\n", eventDto.eventTypeName()));
         if (eventDto.startTime() != null)
-            evDescription.append(String.format("\t\t\t\t\t\tВремя начала: %s\n", eventDto.startTime()));
+            evDescription.append(String.format("\t\t\t\t\t\tВремя: с %s", eventDto.startTime()));
         if (eventDto.endTime() != null)
-            evDescription.append(String.format("\t\t\t\t\t\tВремя окончания: %s\n", eventDto.endTime()));
-        if (eventDto.location() != null)
+            evDescription.append(String.format(" до %s\n", eventDto.endTime()));
+        else evDescription.append("\n");
+        if (eventDto.location() != null && !evDescription.isEmpty())
             evDescription.append(String.format("\t\t\t\t\t\tМесто: %s\n", eventDto.location()));
-        if (eventDto.description() != null)
+        if (eventDto.description() != null && !eventDto.description().isEmpty())
             evDescription.append(String.format("\t\t\t\t\t\tКомментарий: %s\n", eventDto.description()));
         return evDescription.toString();
     }

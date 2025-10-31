@@ -52,7 +52,7 @@
                 <p class="text-muted mb-0 mt-2">Заполните информацию о событии</p>
             </div>
             <!-- Форма -->
-            <form th:action="@{/api/planny/events/new}" th:object="${eventDto}" method="post">
+            <form th:action="@{/api/planny/events/new}" th:object="${eventForm}" method="post">
                 <!-- Название события -->
                 <div class="mb-3">
                     <label for="title" class="form-label fw-bold">Название</label>
@@ -84,9 +84,9 @@
                     <!-- Даты -->
                     <div class="row mb-1">
                         <div class="col-md-6">
-                            <label for="startDate" class="form-label fw-bold">Дата</label>
-                            <input type="date" class="form-control" id="startDate"
-                                   th:field="*{dateEvent}" required>
+                            <label for="startEvent" class="form-label fw-bold">Дата</label>
+                            <input type="date" class="form-control" id="startEvent"
+                                   th:field="*{startEvent}" required>
                         </div>
                         <!--Повторения-->
                         <div class="mb-3">
@@ -107,9 +107,9 @@
                                     <!--<option value="CUSTOM">Произвольное</option>-->
                                 </select>
                             </div>
-                            <div class="col-md-6" id="endDateEventSection" style="display: none;">
-                                <label for="endDateEvent" class="form-label fw-bold">Дата окончания</label>
-                                <input type="date" class="form-control" id="endDateEvent"
+                            <div class="col-md-6" id="endEventSection" style="display: none;">
+                                <label for="endEvent" class="form-label fw-bold">Дата окончания</label>
+                                <input type="date" class="form-control" id="endEvent"
                                        th:field="*{endEvent}">
                             </div>
                         </div>
@@ -170,17 +170,17 @@
         const checkRepeat = document.getElementById('checkRepeat');
         const recurrenceSection = document.getElementById('recurrenceSection');
         const recurrenceSelect = document.getElementById('recurrence');
-        const endDateEventSection = document.getElementById('endDateEventSection');
+        const endEventSection = document.getElementById('endEventSection');
 
         if (checkRepeat.checked) {
             recurrenceSection.style.display = 'block';
-            endDateEventSection.style.display = 'block';
+            endEventSection.style.display = 'block';
             if (!recurrenceSelect.value) {
                 recurrenceSelect.value = 'DAILY';
             }
         } else {
             recurrenceSection.style.display = 'none';
-            endDateEventSection.style.display = 'none';
+            endEventSection.style.display = 'none';
             recurrenceSelect.value = '';
         }
     }

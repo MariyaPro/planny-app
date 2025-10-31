@@ -1,6 +1,6 @@
 package com.prokofeva.dbplannyservice.controller;
 
-import com.prokofeva.dbplannyservice.dto.EventDto;
+import com.prokofeva.dbplannyservice.dto.EventRequest;
 import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
 import com.prokofeva.dbplannyservice.service.EventService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
@@ -22,8 +22,8 @@ public class EventController {
 
     @PostMapping("/")
     @LogRequest(logParameters = false)
-    public ResponseEntity<Object> createEvent(@RequestBody @Valid EventDto eventDto) {
-        eventService.createEvent(eventDto);
+    public ResponseEntity<Object> createEvent(@RequestBody @Valid EventRequest eventRequest) {
+        eventService.createEvent(eventRequest.eventDtos());
         return ResponseEntity.ok().build();
     }
 

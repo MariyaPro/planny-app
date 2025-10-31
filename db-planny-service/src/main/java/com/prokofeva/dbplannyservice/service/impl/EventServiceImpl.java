@@ -8,6 +8,7 @@ import com.prokofeva.dbplannyservice.repository.EventRepository;
 import com.prokofeva.dbplannyservice.service.EventService;
 import com.prokofeva.dbplannyservice.specifications.EventSpecifications;
 import com.prokofeva.dbplannyservice.util.LogRequest;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
@@ -26,8 +27,10 @@ public class EventServiceImpl implements EventService {
     private final MapperEvent mapperEvent;
 
     @Override
-    public void createEvent(EventDto eventDto) {
-        var entity = eventRepository.save(mapperEvent.toEntity(eventDto));
+    public void createEvent(@NotEmpty List<EventDto> eventDtoList) {
+        var entity = eventRepository.saveAll(eventDtoList.stream()
+                .map(mapperEvent::toEntity)
+                .toList());
         log.debug("Created new event: {}", toJson(entity));
     }
 

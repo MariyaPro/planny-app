@@ -1,8 +1,8 @@
 package com.prokofeva.editorplannyui.service;
 
-import com.prokofeva.editorplannyui.dto.EventDto;
+import com.prokofeva.editorplannyui.dto.EventForm;
 
 public interface EventService {
 
-    void save(EventDto eventDto);
+    void save(EventForm eventForm);
 }

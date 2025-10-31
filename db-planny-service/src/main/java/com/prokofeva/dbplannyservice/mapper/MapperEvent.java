@@ -26,8 +26,8 @@ public class MapperEvent {
                 .dateEvent(dto.getDateEvent())
                 .startTime(dto.getStartTime())
                 .endTime(dto.getEndTime())
-                .description(dto.getDescription())
-                .location(dto.getLocation())
+                .description(dto.getDescription().isEmpty() ? null : dto.getDescription())
+                .location(dto.getLocation().isEmpty() ? null : dto.getLocation())
                 .active(Objects.isNull(dto.getActive()) || dto.getActive())
                 .build();
     }
