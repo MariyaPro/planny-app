@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.prokofeva.db-planny-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.prokofeva.db-planny-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.prokofeva.notification-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.prokofeva.notification-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/db-planny-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/db-planny-service.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/planny-app.iml" filepath="$PROJECT_DIR$/planny-app.iml" />
