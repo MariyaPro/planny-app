@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Добавить событие - Planny</title>
+    <style>
+        .form-container {
+            background: whitesmoke;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+        }
+
+        .form-header {
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-custom {
+            background-color: #764ba2;
+            border-color: #764ba2;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #5a397c;
+            border-color: #5a397c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+        }
+
+        .time-fields {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="form-container">
+            <!-- Заголовок -->
+            <div class="form-header">
+                <h2 class="mb-3" style="color: #764ba2;">
+                    <i class="fas justify-content-center fa-plus-circle me-2"></i>Добавить новое событие
+                </h2>
+                <p class="text-muted mb-0 mt-2">Заполните информацию о событии</p>
+            </div>
+            <!-- Форма -->
+            <form th:action="@{/api/planny/events/new}" th:object="${eventForm}" method="post">
+                <!-- Название события -->
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-bold">Название</label>
+                    <input type="text" class="form-control" id="title"
+                           th:field="*{title}"
+                           placeholder="Введите название события" required>
+                </div>
+                <!-- Владелец -->
+                <div class="mb-3">
+                    <label for="owner" class="form-label fw-bold">Владелец</label>
+                    <input type="text" class="form-control" id="owner"
+                           th:field="*{ownerName}"
+                           placeholder="Введите имя владельца" required>
+                </div>
+                <!--Категория-->
+                <div class="mb-3">
+                    <label for="eventTypeName" class="form-label fw-bold">Категория</label>
+                    <select class="form-select" id="eventTypeName" th:field="*{eventTypeName}">
+                        <option value="holiday">праздник</option>
+                        <option value="health">здоровье</option>
+                        <option value="sports">спорт</option>
+                        <option value="beauty">красота</option>
+                        <option value="guests">гости</option>
+                        <option value="travel">путешествие</option>
+                        <option value="unknown">прочее</option>
+                    </select>
+                </div>
+                <div class="row mb-3 time-fields">
+                    <!-- Даты -->
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <label for="startEvent" class="form-label fw-bold">Дата</label>
+                            <input type="date" class="form-control" id="startEvent"
+                                   th:field="*{startEvent}" required>
+                        </div>
+                        <!--Повторения-->
+                        <div class="mb-3">
+                            <div class="form-check form-switch mb-3">
+                                <input type="checkbox" class="form-check-input" id="checkRepeat"
+                                       onchange="toggleRecurrence()">
+                                <label class="form-check-label fw-bold" for="checkRepeat">Повторять
+                                    событие</label>
+                            </div>
+
+                            <div class="recurrence-section" id="recurrenceSection" style="display: none;">
+                                <label for="recurrence" class="form-label fw-bold">Период повторения</label>
+                                <select class="form-select" id="recurrence" th:field="*{recurrence}">
+                                    <option value="DAILY">Ежедневно</option>
+                                    <option value="WEEKLY">Еженедельно</option>
+                                    <option value="MONTHLY">Ежемесячно</option>
+                                    <option value="YEARLY">Ежегодно</option>
+                                    <!--<option value="CUSTOM">Произвольное</option>-->
+                                </select>
+                            </div>
+                            <div class="col-md-6" id="endEventSection" style="display: none;">
+                                <label for="endEvent" class="form-label fw-bold">Дата окончания</label>
+                                <input type="date" class="form-control" id="endEvent"
+                                       th:field="*{endEvent}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Время -->
+                <div class="row mb-3 time-fields">
+                    <div class="col-md-6">
+                        <label for="startTime" class="form-label fw-bold">Время начала</label>
+                        <input type="time" class="form-control" id="startTime"
+                               th:field="*{startTime}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="endTime" class="form-label fw-bold">Время окончания</label>
+                        <input type="time" class="form-control" id="endTime"
+                               th:field="*{endTime}">
+                    </div>
+                </div>
+
+                <!-- Локация -->
+                <div class="mb-3">
+                    <label for="location" class="form-label fw-bold">Локация</label>
+                    <input type="text" class="form-control" id="location"
+                           th:field="*{location}"
+                           placeholder="Введите место проведения">
+                </div>
+
+                <!-- Описание -->
+                <div class="mb-4">
+                    <label for="description" class="form-label fw-bold">Описание</label>
+                    <textarea class="form-control" id="description"
+                              th:field="*{description}"
+                              rows="3"
+                              placeholder="Опишите детали события..."></textarea>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="d-flex gap-2 justify-content-end">
+                    <button type="button" class="btn btn-secondary"
+                            onclick="window.location.href='/api/planny/'">
+                        <i class="fas fa-arrow-left me-2"></i>Назад
+                    </button>
+                    <button type="reset" class="btn btn-outline-secondary">
+                        <i class="fas fa-redo me-2"></i>Очистить
+                    </button>
+                    <button type="submit" class="btn btn-custom">
+                        <i class="fas fa-save me-2"></i>Создать событие
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleRecurrence() {
+        const checkRepeat = document.getElementById('checkRepeat');
+        const recurrenceSection = document.getElementById('recurrenceSection');
+        const recurrenceSelect = document.getElementById('recurrence');
+        const endEventSection = document.getElementById('endEventSection');
+
+        if (checkRepeat.checked) {
+            recurrenceSection.style.display = 'block';
+            endEventSection.style.display = 'block';
+            if (!recurrenceSelect.value) {
+                recurrenceSelect.value = 'DAILY';
+            }
+        } else {
+            recurrenceSection.style.display = 'none';
+            endEventSection.style.display = 'none';
+            recurrenceSelect.value = '';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        toggleRecurrence();
+    });
+</script>
+
+</body>
+</html>
