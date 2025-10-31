@@ -1,11 +1,12 @@
 package com.prokofeva.editorplannyui.service.impl;
 
-import com.prokofeva.editorplannyui.client.DbEventsClient;
+import com.prokofeva.editorplannyui.client.DbPlannyClient;
 import com.prokofeva.editorplannyui.dto.EventDto;
 import com.prokofeva.editorplannyui.dto.EventForm;
 import com.prokofeva.editorplannyui.dto.EventRequest;
+import com.prokofeva.editorplannyui.dto.OwnerDto;
 import com.prokofeva.editorplannyui.enums.Recurrence;
-import com.prokofeva.editorplannyui.service.EventService;
+import com.prokofeva.editorplannyui.service.DbPlannyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,18 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class EventServiceImpl implements EventService {
-    private final DbEventsClient dbEventsClient;
+public class DbPlannyServiceImpl implements DbPlannyService {
+    private final DbPlannyClient dbPlannyClient;
 
     @Override
     public void save(EventForm eventForm) {
         var eventRequest = EventRequest.builder().eventDtos(buildListDto(eventForm)).build();
-        dbEventsClient.save(eventRequest);
+        dbPlannyClient.save(eventRequest);
+    }
+
+    @Override
+    public List<OwnerDto> getOwnersList() {
+        return dbPlannyClient.getOwnersList();
     }
 
     private List<EventDto> buildListDto(EventForm eventForm) {

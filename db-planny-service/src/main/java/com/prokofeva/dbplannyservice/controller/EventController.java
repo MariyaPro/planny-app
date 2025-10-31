@@ -3,6 +3,7 @@ package com.prokofeva.dbplannyservice.controller;
 import com.prokofeva.dbplannyservice.dto.EventRequest;
 import com.prokofeva.dbplannyservice.dto.EventsForReportRequest;
 import com.prokofeva.dbplannyservice.service.EventService;
+import com.prokofeva.dbplannyservice.service.OwnerService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 @Slf4j
 public class EventController {
     private final EventService eventService;
+    private final OwnerService ownerService;
 
     @PostMapping("/")
     @LogRequest(logParameters = false)
@@ -46,4 +48,9 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsForReport(request));
     }
 
+    @GetMapping("/owners")
+    @LogRequest
+    public ResponseEntity<Object> getOwners() {
+        return ResponseEntity.ok(ownerService.findAllActive());
+    }
 }

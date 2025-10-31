@@ -36,7 +36,7 @@ public class BotPlanny extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasCallbackQuery()) {
             log.info("Callback query: {}", Util.toJson(update.getCallbackQuery()));
-            var userId =update.getCallbackQuery().getFrom().getId();
+            var userId = update.getCallbackQuery().getFrom().getId();
             var report = reportFacade.getReport(update.getCallbackQuery());
             sendText(userId, report);
         } else {
@@ -61,14 +61,14 @@ public class BotPlanny extends TelegramLongPollingBot {
         }
     }
 
-    public void sendKeyboard(Long who, ReplyKeyboard keyboard) {
+    public void sendKeyboard(Long who, ReplyKeyboard keyboard, String what) {
         var sm = SendMessage.builder()
-                .text("какой план тебе нужен?")
+                .text(what)
                 .replyMarkup(keyboard)
                 .chatId(who.toString())
                 .build();
         try {
-             execute(sm);
+            execute(sm);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

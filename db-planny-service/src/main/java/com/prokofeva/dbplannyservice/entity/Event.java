@@ -1,9 +1,6 @@
 package com.prokofeva.dbplannyservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -29,8 +26,9 @@ public class Event {
     private UUID id;
     @NotEmpty
     private String title;
-    @ManyToOne
-    private Owner owner;
+//    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private UUID ownerId;
     @ManyToOne
     private EventType eventType;
 
