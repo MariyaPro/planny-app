@@ -1,7 +1,14 @@
 package com.prokofeva.dbplannyservice.service;
 
-import com.prokofeva.dbplannyservice.entity.Owner;
+import com.prokofeva.dbplannyservice.dto.OwnerDto;
+
+import java.util.List;
+import java.util.UUID;
 
 public interface OwnerService {
-    Owner findOwnerByName(String name);
+    OwnerDto findOwnerByName(String name);
+
+    List<OwnerDto> findAllActive();
+
+    OwnerDto findById(UUID ownerId);
 }

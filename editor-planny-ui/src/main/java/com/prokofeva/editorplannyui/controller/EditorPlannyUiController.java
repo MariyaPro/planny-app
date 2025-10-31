@@ -1,7 +1,7 @@
 package com.prokofeva.editorplannyui.controller;
 
 import com.prokofeva.editorplannyui.dto.EventForm;
-import com.prokofeva.editorplannyui.service.EventService;
+import com.prokofeva.editorplannyui.service.DbPlannyService;
 import com.prokofeva.editorplannyui.util.LogRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @Slf4j
 public class EditorPlannyUiController {
-    private final EventService eventService;
+    private final DbPlannyService dbPlannyService;
 
     @GetMapping("/")
     @LogRequest(logResult = false)
@@ -30,6 +30,7 @@ public class EditorPlannyUiController {
     @LogRequest(logResult = false)
     public String showCreateForm(Model model) {
         model.addAttribute("eventForm", EventForm.builder().build());
+        model.addAttribute("owners", dbPlannyService.getOwnersList());
         return "events-new";
     }
 
@@ -42,7 +43,7 @@ public class EditorPlannyUiController {
             return "events-new";
         }
         try {
-            eventService.save(eventForm);
+            dbPlannyService.save(eventForm);
             model.addAttribute("successMessage", "Событие успешно создано!");
             return "redirect:/events?success=true";
         } catch (Exception e) {

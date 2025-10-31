@@ -63,9 +63,13 @@
                 <!-- Владелец -->
                 <div class="mb-3">
                     <label for="owner" class="form-label fw-bold">Владелец</label>
-                    <input type="text" class="form-control" id="owner"
-                           th:field="*{ownerName}"
-                           placeholder="Введите имя владельца" required>
+                    <select class="form-select" id="owner" th:field="*{ownerName}" required>
+                        <option value="">Выберите владельца</option>
+                        <option th:each="owner : ${owners}"
+                                th:value="${owner.id}"
+                                th:text="${owner.name}">
+                        </option>
+                    </select>
                 </div>
                 <!--Категория-->
                 <div class="mb-3">
@@ -80,8 +84,8 @@
                         <option value="unknown">прочее</option>
                     </select>
                 </div>
+                <!-- Даты -->
                 <div class="row mb-3 time-fields">
-                    <!-- Даты -->
                     <div class="row mb-1">
                         <div class="col-md-6">
                             <label for="startEvent" class="form-label fw-bold">Дата</label>
@@ -115,7 +119,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Время -->
                 <div class="row mb-3 time-fields">
                     <div class="col-md-6">
@@ -129,7 +132,6 @@
                                th:field="*{endTime}">
                     </div>
                 </div>
-
                 <!-- Локация -->
                 <div class="mb-3">
                     <label for="location" class="form-label fw-bold">Локация</label>
@@ -137,7 +139,6 @@
                            th:field="*{location}"
                            placeholder="Введите место проведения">
                 </div>
-
                 <!-- Описание -->
                 <div class="mb-4">
                     <label for="description" class="form-label fw-bold">Описание</label>
@@ -146,7 +147,6 @@
                               rows="3"
                               placeholder="Опишите детали события..."></textarea>
                 </div>
-
                 <!-- Кнопки -->
                 <div class="d-flex gap-2 justify-content-end">
                     <button type="button" class="btn btn-secondary"
