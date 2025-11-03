@@ -1,0 +1,9 @@
+FROM eclipse-temurin:21.0.1_12-jdk
+WORKDIR /app
+
+# Копируем JAR файл (должен быть собран заранее)
+COPY notification-service/build/libs/notification-service-*.jar app.jar
+COPY notification-service/src/main/resources/recipient-configs/ app/recipient_configs/
+
+EXPOSE 8082
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -10,7 +10,7 @@ description = "tg-bot-planny"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -26,13 +26,12 @@ repositories {
 
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.3.0")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.liquibase:liquibase-core")
     implementation("org.telegram:telegrambots:6.0.1")
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

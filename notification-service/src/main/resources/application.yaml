@@ -22,15 +22,7 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
 
 services:
-  report-generator-service: "http://localhost:8084/api/report-generator"
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 30000
-        loggerLevel: basic
+  report-generator-service: ${services.report-generator}
 
 recipient:
   config:
