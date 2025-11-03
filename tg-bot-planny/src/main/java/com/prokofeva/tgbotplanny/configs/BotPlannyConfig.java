@@ -6,19 +6,18 @@ import com.prokofeva.tgbotplanny.facade.ReportFacade;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Configuration
-@PropertySource("${telegrambot.prop.path}")
 public class BotPlannyConfig {
-    @Value("${name}")
+
+    @Value("${telegrambot.name}")
     private String name;
-    @Value("${id}")
+    @Value("${telegrambot.id}")
     private String id;
-    @Value("${token}")
+    @Value("${telegrambot.token}")
     private String token;
 
     @Bean

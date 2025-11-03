@@ -6,19 +6,11 @@ spring:
     name: report-generator
   data:
     mongodb:
-      uri: "mongodb://${MONGO_USER}:${MONGO_PASSWORD}@localhost:27017/"
+      uri: ${SPRING_DATA_MONGODB_URI}
       database: "mongodb"
 
 services:
-  db-planny-service: "http://localhost:8081/api/db-planny"
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 30000
-        loggerLevel: basic
+  db-planny-service: ${services.db-planny-service}
 
 logging:
   file:
