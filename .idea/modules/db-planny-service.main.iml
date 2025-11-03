@@ -5,21 +5,4 @@
       <sourceFolder url="file://$MODULE_DIR$/../../db-planny-service/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
-  <component name="FacetManager">
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping>
-          <factory-entry name="entityManagerFactory" value="d3967e37-fb47-42ce-aaed-feb5a2c663cd" />
-        </datasource-mapping>
-        <naming-strategy-map>
-          <unit-entry name="entityManagerFactory" />
-        </naming-strategy-map>
-      </configuration>
-    </facet>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
 </module>

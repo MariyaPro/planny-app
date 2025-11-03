@@ -1,0 +1,8 @@
+FROM eclipse-temurin:21.0.1_12-jdk
+WORKDIR /app
+
+# Копируем JAR файл (должен быть собран заранее)
+COPY tg-bot-planny/build/libs/tg-bot-planny-*.jar app.jar
+
+EXPOSE 8083
+ENTRYPOINT ["java", "-jar", "app.jar"]

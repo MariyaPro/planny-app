@@ -1,0 +1,8 @@
+FROM eclipse-temurin:21.0.1_12-jdk
+WORKDIR /app
+
+# Копируем JAR файл (должен быть собран заранее)
+COPY db-planny-service/build/libs/db-planny-service-*.jar app.jar
+
+EXPOSE 8081
+ENTRYPOINT ["java", "-jar", "app.jar"]
