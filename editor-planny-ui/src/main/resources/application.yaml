@@ -8,8 +8,8 @@ spring:
     cache: true
 
 services:
-  db-planny-service: ${services.db-planny-service}
+  db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}
 
 logging:
   file:
-    name: logs/log_editor-planny-ui
+    name: /data/logs/log_editor-planny-ui

@@ -23,7 +23,7 @@ services:
       - app-network
 
   postgresdb:
-    image: postgres:latest
+    image: postgres:17.6-alpine
     container_name: planny-db
     restart: always
     env_file:
