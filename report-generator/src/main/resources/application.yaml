@@ -6,14 +6,12 @@ spring:
     name: report-generator
   data:
     mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI}
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/planny?authSource=admin
       database: "mongodb"
 
 services:
-  db-planny-service: ${services.db-planny-service}
+  db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}
 
 logging:
   file:
-    name: logs/log_report-generator
-#  level:
-#    org.springframework.data.mongodb: DEBUG
+    name: /data/logs/log_report-generator
