@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/editor-planny-ui.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/notification-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notification-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/planny-app.iml" filepath="$PROJECT_DIR$/planny-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/report-generator.main.iml" filepath="$PROJECT_DIR$/.idea/modules/report-generator.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tg-bot-planny.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tg-bot-planny.main.iml" />
     </modules>
   </component>
