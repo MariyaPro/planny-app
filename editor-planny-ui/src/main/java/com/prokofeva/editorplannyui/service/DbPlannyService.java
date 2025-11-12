@@ -9,5 +9,5 @@ public interface DbPlannyService {
 
     void save(EventForm eventForm);
 
-    List<OwnerDto> getOwnersList();
+    List<OwnerDto> getOwnersList(boolean isDemo);
 }

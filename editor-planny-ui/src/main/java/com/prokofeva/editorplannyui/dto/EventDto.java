@@ -8,7 +8,7 @@ import java.time.LocalTime;
 @Builder
 public record EventDto(
         String title,
-        String ownerName,
+        String ownerId,
         String eventTypeName,
         LocalDate dateEvent,
         LocalTime startTime,

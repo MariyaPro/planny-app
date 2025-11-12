@@ -37,7 +37,7 @@ public class GeneratorFormatTxt implements GeneratorFormat {
         data.stream()
                 .collect(Collectors.groupingBy(EventDto::dateEvent))
                 .values()
-                .stream().sorted(Comparator.comparing(l -> l.getFirst().dateEvent()))
+                .stream().sorted(Comparator.comparing(l -> l.get(0).dateEvent()))
                 .forEach(listDay -> reportSb.append("-----------------\n").append(buildDaysData(listDay)));
 
         return reportSb.toString();
@@ -45,7 +45,7 @@ public class GeneratorFormatTxt implements GeneratorFormat {
 
     private StringBuilder buildDaysData(List<EventDto> dataDay) {
         var reportSb = new StringBuilder();
-        var title = buildDayTitle(dataDay.getFirst().dateEvent());
+        var title = buildDayTitle(dataDay.get(0).dateEvent());
         reportSb.append(title)
                 .append(String.format("запланировано %d.\n", dataDay.size()));
         dataDay.forEach(event -> reportSb.append(buildEventDescription(event)));
@@ -57,11 +57,12 @@ public class GeneratorFormatTxt implements GeneratorFormat {
         evDescription.append(String.format("* %s\n", eventDto.title()))
                 .append(String.format("\t\t\t\t\t\tКто: %s\n", eventDto.ownerName()));
 //                .append(String.format("\t\t\t\t\t\tКатегория: %s\n", eventDto.eventTypeName()));
-        if (eventDto.startTime() != null)
+        if (eventDto.startTime() != null) {
             evDescription.append(String.format("\t\t\t\t\t\tВремя: с %s", eventDto.startTime()));
-        if (eventDto.endTime() != null)
-            evDescription.append(String.format(" до %s\n", eventDto.endTime()));
-        else evDescription.append("\n");
+            if (eventDto.endTime() != null)
+                evDescription.append(String.format(" до %s\n", eventDto.endTime()));
+            else evDescription.append("\n");
+        }
         if (eventDto.location() != null && !evDescription.isEmpty())
             evDescription.append(String.format("\t\t\t\t\t\tМесто: %s\n", eventDto.location()));
         if (eventDto.description() != null && !eventDto.description().isEmpty())

@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface OwnerService {
     OwnerDto findOwnerByName(String name);
 
-    List<OwnerDto> findAllActive();
+    List<OwnerDto> findAllActive(boolean isActive);
 
     OwnerDto findById(UUID ownerId);
 }

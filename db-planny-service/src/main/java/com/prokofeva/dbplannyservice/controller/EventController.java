@@ -20,7 +20,6 @@ import java.time.LocalDate;
 @Slf4j
 public class EventController {
     private final EventService eventService;
-    private final OwnerService ownerService;
 
     @PostMapping("/")
     @LogRequest(logParameters = false)
@@ -48,9 +47,4 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsForReport(request));
     }
 
-    @GetMapping("/owners")
-    @LogRequest
-    public ResponseEntity<Object> getOwners() {
-        return ResponseEntity.ok(ownerService.findAllActive());
-    }
 }
