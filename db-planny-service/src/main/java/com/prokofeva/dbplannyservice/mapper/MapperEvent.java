@@ -16,11 +16,10 @@ public class MapperEvent {
     private final OwnerService ownerService;
 
     public Event toEntity(EventDto dto) {
-        var owner = ownerService.findOwnerByName(dto.getOwnerName());
         var eventType = eventTypeService.findEventTypeByName(dto.getEventTypeName());
         return Event.builder()
                 .title(dto.getTitle())
-                .ownerId(owner.id())
+                .ownerId(dto.getOwnerId())
                 .eventType(eventType)
                 .dateEvent(dto.getDateEvent())
                 .startTime(dto.getStartTime())
@@ -36,6 +35,7 @@ public class MapperEvent {
         return EventDto.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
+                .ownerId(entity.getOwnerId())
                 .ownerName(ownerName)
                 .eventTypeName(entity.getEventType() == null ? null : entity.getEventType().getName())
                 .dateEvent(entity.getDateEvent())

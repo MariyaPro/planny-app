@@ -5,7 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
+    <include file="/db/changelog/changes-db-events/2025/000-init_user.xml"/>
     <include file="/db/changelog/changes-db-events/2025/001-create-table.xml"/>
     <include file="/db/changelog/changes-db-events/2025/002-event_type_data.xml"/>
+    <include file="/db/changelog/changes-db-events/2025/004-owners_data.xml"/>
 
 </databaseChangeLog>

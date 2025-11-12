@@ -9,7 +9,7 @@ import java.time.LocalTime;
 @Builder
 public record EventForm(
         String title,
-        String ownerName,
+        String ownerId,
         String eventTypeName,
         LocalDate startEvent,
         LocalDate endEvent,

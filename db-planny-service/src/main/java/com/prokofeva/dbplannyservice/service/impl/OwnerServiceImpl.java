@@ -22,8 +22,8 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public List<OwnerDto> findAllActive() {
-        return ownerRepository.findAllByActive(true).stream()
+    public List<OwnerDto> findAllActive(boolean isActive) {
+        return ownerRepository.findAllByActive(isActive).stream()
                 .map(mapperOwner::toDto)
                 .toList();
     }

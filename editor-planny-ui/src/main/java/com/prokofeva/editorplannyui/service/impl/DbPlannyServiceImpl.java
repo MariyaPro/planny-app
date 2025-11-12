@@ -28,14 +28,14 @@ public class DbPlannyServiceImpl implements DbPlannyService {
     }
 
     @Override
-    public List<OwnerDto> getOwnersList() {
-        return dbPlannyClient.getOwnersList();
+    public List<OwnerDto> getOwnersList(boolean isDemo) {
+        return dbPlannyClient.getOwnersList(isDemo);
     }
 
     private List<EventDto> buildListDto(EventForm eventForm) {
         var eventDto = EventDto.builder()
                 .title(eventForm.title())
-                .ownerName(eventForm.ownerName())
+                .ownerId(eventForm.ownerId())
                 .eventTypeName(eventForm.eventTypeName())
                 .dateEvent(eventForm.startEvent())
                 .startTime(eventForm.startTime())
@@ -53,7 +53,7 @@ public class DbPlannyServiceImpl implements DbPlannyService {
             while (!curDate.isAfter(endEvent)) {
                 var event = EventDto.builder()
                         .title(eventForm.title())
-                        .ownerName(eventForm.ownerName())
+                        .ownerId(eventForm.ownerId())
                         .eventTypeName(eventForm.eventTypeName())
                         .dateEvent(curDate)
                         .startTime(eventForm.startTime())

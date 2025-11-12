@@ -3,6 +3,7 @@ package com.prokofeva.editorplannyui.controller;
 import com.prokofeva.editorplannyui.dto.EventForm;
 import com.prokofeva.editorplannyui.service.DbPlannyService;
 import com.prokofeva.editorplannyui.util.LogRequest;
+import com.prokofeva.editorplannyui.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class EditorPlannyUiController {
     @LogRequest(logResult = false)
     public String showCreateForm(Model model) {
         model.addAttribute("eventForm", EventForm.builder().build());
-        model.addAttribute("owners", dbPlannyService.getOwnersList());
+        model.addAttribute("owners", dbPlannyService.getOwnersList(true));
         return "events-new";
     }
 
@@ -43,6 +44,7 @@ public class EditorPlannyUiController {
             return "events-new";
         }
         try {
+            log.info("Attempt to save a new event: {}", Util.toJson(eventForm));
             dbPlannyService.save(eventForm);
             model.addAttribute("successMessage", "Событие успешно создано!");
             return "redirect:/events?success=true";
