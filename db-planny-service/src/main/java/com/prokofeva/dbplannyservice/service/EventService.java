@@ -15,6 +15,4 @@ public interface EventService {
 
     List<EventDto> getEventsForReport(EventsForReportRequest request);
 
-
-
 }

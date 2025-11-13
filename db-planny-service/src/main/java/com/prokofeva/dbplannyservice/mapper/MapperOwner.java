@@ -11,10 +11,10 @@ public class MapperOwner {
 
     public Owner toEntity(OwnerDto dto) {
         return Owner.builder()
-                .id(dto.id())
+//                .id(dto.id())
                 .name(dto.name())
                 .description(dto.description())
-                .active(dto.active())
+                .active(true)
                 .build();
     }
 

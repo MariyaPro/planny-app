@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -22,11 +23,12 @@ public class UserTG {
     private @NonNull Long idTg;
     private @NonNull String firstNameTg;
     private String lastNameTg;
-    private @NonNull Boolean isBot;
+    private @NonNull boolean isBot;
     private String userNameTg;
     private String languageCode;
+    private UUID ownerId;
 
-    private List<UserTG> subscribers;
-    private List<UserTG> subscriptions;
+//    private List<UserTG> subscribersId;
+    private List<UUID> subscriptionsId;
 
 }

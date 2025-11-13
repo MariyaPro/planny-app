@@ -1,6 +1,7 @@
 package com.prokofeva.dbplannyservice.service.impl;
 
 import com.prokofeva.dbplannyservice.dto.OwnerDto;
+import com.prokofeva.dbplannyservice.entity.Owner;
 import com.prokofeva.dbplannyservice.mapper.MapperOwner;
 import com.prokofeva.dbplannyservice.repository.OwnerRepository;
 import com.prokofeva.dbplannyservice.service.OwnerService;
@@ -31,5 +32,10 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public OwnerDto findById(UUID ownerId) {
         return mapperOwner.toDto(ownerRepository.findById(ownerId).get());
+    }
+
+    @Override
+    public UUID save(OwnerDto ownerDto) {
+        return ownerRepository.save(mapperOwner.toEntity(ownerDto)).getId();
     }
 }
