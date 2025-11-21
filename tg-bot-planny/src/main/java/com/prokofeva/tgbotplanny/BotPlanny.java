@@ -41,11 +41,10 @@ public class BotPlanny extends TelegramLongPollingBot {
             sendText(userId, report);
         } else {
             var msg = update.getMessage();
-            var user = msg.getFrom();
-            var id = user.getId();
+            var id = msg.getFrom().getId();
             log.info("incoming message: {}", Util.toJson(msg));
             if (msg.isCommand()) {
-                commandFactory.getCommand(msg.getText()).execute(this, id, msg.getText());
+                commandFactory.getCommand(msg.getText()).execute(this, update);
             } else sendText(id, "ок");
         }
     }

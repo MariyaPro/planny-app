@@ -23,6 +23,7 @@ public class Owner {
     @UuidGenerator
     private UUID id;
     private String name;
+    private Long userIdTg;
     private String description;
 
     private  boolean active;

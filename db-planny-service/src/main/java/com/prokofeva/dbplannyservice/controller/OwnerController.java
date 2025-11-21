@@ -1,7 +1,7 @@
 package com.prokofeva.dbplannyservice.controller;
 
 import com.prokofeva.dbplannyservice.dto.OwnerDto;
-import com.prokofeva.dbplannyservice.entity.Owner;
+import com.prokofeva.dbplannyservice.facade.OwnerFacade;
 import com.prokofeva.dbplannyservice.service.OwnerService;
 import com.prokofeva.dbplannyservice.util.LogRequest;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class OwnerController {
     private final OwnerService ownerService;
+    private final OwnerFacade ownerFacade;
 
     @GetMapping("/")
     @LogRequest
@@ -25,6 +26,6 @@ public class OwnerController {
     @PostMapping("/")
     @LogRequest
     public ResponseEntity<Object> createOwner(@RequestBody OwnerDto ownerDto) {
-        return ResponseEntity.ok(ownerService.save(ownerDto));
+        return ResponseEntity.ok(ownerFacade.checkAndUpdate(ownerDto));
     }
 }

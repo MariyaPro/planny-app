@@ -8,7 +8,8 @@ import java.util.UUID;
 
 public interface OwnerRepository extends JpaRepository<Owner, UUID> {
 
-    Owner findOwnerByName(String name);
-
     List<Owner> findAllByActive(boolean isActive);
+
+    Owner findByUserIdTg(Long userIdTg);
+
 }

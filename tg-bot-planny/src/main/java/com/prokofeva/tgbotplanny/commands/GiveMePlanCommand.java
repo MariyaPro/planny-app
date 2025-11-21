@@ -5,6 +5,7 @@ import com.prokofeva.tgbotplanny.enums.ReportTypeCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -17,7 +18,8 @@ import java.util.List;
 public class GiveMePlanCommand implements Command {
 
     @Override
-    public void execute(BotPlanny botPlanny, Long userId, String msg) {
+    public void execute(BotPlanny botPlanny, Update update) {
+        var userId = update.getMessage().getFrom().getId();
         askParam(botPlanny, userId);
     }
 
