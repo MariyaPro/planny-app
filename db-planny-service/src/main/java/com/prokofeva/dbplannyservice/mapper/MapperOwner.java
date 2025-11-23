@@ -2,26 +2,24 @@ package com.prokofeva.dbplannyservice.mapper;
 
 import com.prokofeva.dbplannyservice.dto.OwnerDto;
 import com.prokofeva.dbplannyservice.entity.Owner;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
-@RequiredArgsConstructor
 public class MapperOwner {
 
-    public Owner toEntity(OwnerDto dto) {
+    public static Owner toEntity(OwnerDto dto) {
         return Owner.builder()
                 .id(dto.id())
                 .name(dto.name())
+                .userIdTg(dto.userIdTg())
                 .description(dto.description())
-                .active(dto.active())
+                .active(true)
                 .build();
     }
 
-    public OwnerDto toDto(Owner entity) {
+    public static OwnerDto toDto(Owner entity) {
         return OwnerDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .userIdTg(entity.getUserIdTg())
                 .description(entity.getDescription())
                 .active(entity.isActive())
                 .build();
