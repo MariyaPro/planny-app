@@ -150,10 +150,30 @@ services:
       - .env
     depends_on:
       - db-planny-service
+      - db-user-pa-service
     ports:
       - "8085:8085"
     environment:
       SERVER_PORT: 8085
+    volumes:
+      - logs:/app/logs
+    networks:
+      - app-network
+
+  db-user-pa-service:
+    build:
+      context: .
+      dockerfile: Dockerfile_dbuserpa
+    container_name: db-user-pa-app
+    restart: no
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    ports:
+      - "8086:8086"
+    environment:
+      SERVER_PORT: 8086
     volumes:
       - logs:/app/logs
     networks:

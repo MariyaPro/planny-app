@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-
 @FeignClient(
         name = "dbPlannyService",
         url = "${services.db-planny-service}"

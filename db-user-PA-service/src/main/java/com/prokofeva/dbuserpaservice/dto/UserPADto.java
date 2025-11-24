@@ -1,8 +1,7 @@
-package com.prokofeva.tgbotplanny.dto;
+package com.prokofeva.dbuserpaservice.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-
 import java.util.List;
 
 @Builder

@@ -2,6 +2,7 @@ package com.prokofeva.editorplannyui.controller;
 
 import com.prokofeva.editorplannyui.dto.EventForm;
 import com.prokofeva.editorplannyui.service.DbPlannyService;
+import com.prokofeva.editorplannyui.service.DbUserPAService;
 import com.prokofeva.editorplannyui.util.LogRequest;
 import com.prokofeva.editorplannyui.util.Util;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class EditorPlannyUiController {
     private final DbPlannyService dbPlannyService;
+    private final DbUserPAService dbUserPAService;
 
     @GetMapping("/")
     @LogRequest(logResult = false)
@@ -34,9 +36,9 @@ public class EditorPlannyUiController {
 
     @GetMapping("/events/new/{idtg}")
     @LogRequest(logResult = false)
-    public String showCreateFormTgUser(@RequestParam ("idTg") long userIdTg, Model model) {
+    public String showCreateFormTgUser(@PathVariable ("idtg") long userIdTg, Model model) {
         model.addAttribute("eventForm", EventForm.builder().build());
-        model.addAttribute("owners", dbPlannyService.getOwnersList(false));
+        model.addAttribute("owners", dbUserPAService.getOwnersList(userIdTg));
         return "events-new";
     }
 

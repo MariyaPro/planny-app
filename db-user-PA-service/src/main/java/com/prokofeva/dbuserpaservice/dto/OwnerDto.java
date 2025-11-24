@@ -1,4 +1,4 @@
-package com.prokofeva.editorplannyui.dto;
+package com.prokofeva.dbuserpaservice.dto;
 
 public record OwnerDto(
         String id,

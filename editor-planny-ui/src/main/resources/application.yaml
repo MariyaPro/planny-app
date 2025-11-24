@@ -9,6 +9,7 @@ spring:
 
 services:
   db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}
+  db-user-pa-service: ${SERVICES_DB_USER_PA_SERVICE}
 
 logging:
   file:

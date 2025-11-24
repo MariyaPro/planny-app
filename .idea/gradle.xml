@@ -13,6 +13,15 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/db-user-PA-service" />
+        <option name="gradleJvm" value="temurin-23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/db-user-PA-service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/editor-planny-ui" />
         <option name="gradleJvm" value="temurin-23" />
         <option name="modules">

@@ -1,7 +1,7 @@
-package com.prokofeva.tgbotplanny.mapper;
+package com.prokofeva.dbuserpaservice.mapper;
 
-import com.prokofeva.tgbotplanny.dto.UserPADto;
-import com.prokofeva.tgbotplanny.entity.UserPA;
+import com.prokofeva.dbuserpaservice.dto.UserPADto;
+import com.prokofeva.dbuserpaservice.entity.UserPA;
 
 import java.util.ArrayList;
 
@@ -13,10 +13,10 @@ public class MapperUserPA {
                 .idTg(dto.idTg())
                 .firstNameTg(dto.firstNameTg())
                 .lastNameTg(dto.lastNameTg())
+                .nameForReport(dto.nameForReport())
                 .isBot(dto.isBot())
                 .userNameTg(dto.userNameTg())
                 .languageCode(dto.languageCode())
-                .ownerId(dto.ownerId())
                 .subscriptionsId(new ArrayList<>(dto.subscriptionsId()))
                 .build();
     }
@@ -27,10 +27,10 @@ public class MapperUserPA {
                 .idTg(entity.getIdTg())
                 .firstNameTg(entity.getFirstNameTg())
                 .lastNameTg(entity.getLastNameTg())
+                .nameForReport(entity.getNameForReport())
                 .isBot(entity.isBot())
                 .userNameTg(entity.getUserNameTg())
                 .languageCode(entity.getLanguageCode())
-                .ownerId(entity.getOwnerId())
                 .subscriptionsId(entity.getSubscriptionsId())
                 .build();
     }

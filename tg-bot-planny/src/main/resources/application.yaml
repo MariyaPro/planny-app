@@ -11,9 +11,9 @@ spring:
 
 services:
   report-generator: ${SERVICES_REPORT_GENERATOR}
-#  editor-planny-ui: ${SERVICES_EDITOR_PLANNY_UI}
-  editor-planny-ui: "https://editor-planny-ui-mprokofeva.amvera.io/api/planny"
-  db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}
+  editor-planny-ui: ${SERVICES_EDITOR_PLANNY_UI}
+#  editor-planny-ui: "https://editor-planny-ui-mprokofeva.amvera.io/api/planny"
+  db-user-pa-service: ${SERVICES_DB_USER_PA_SERVICE}
 
 telegrambot:
   name: ${TELEGRAMBOT_NAME}
@@ -22,6 +22,10 @@ telegrambot:
 
 jwt:
   secret: ${JWT_SECRET}
+
+users:
+  allowed-to-create: "1038803098,1209586362"
+  allowed-to-read: "1038803098,1209586362"
 
 logging:
   file:
