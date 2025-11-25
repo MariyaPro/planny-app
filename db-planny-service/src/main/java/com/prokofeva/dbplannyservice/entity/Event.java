@@ -28,7 +28,7 @@ public class Event {
     private String title;
 //    @ManyToOne
     @JoinColumn(name = "owner_id")
-    private UUID ownerId;
+    private String ownerId;
     @ManyToOne
     private EventType eventType;
 

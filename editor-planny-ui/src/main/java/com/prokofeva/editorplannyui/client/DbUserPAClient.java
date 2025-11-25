@@ -15,4 +15,7 @@ public interface DbUserPAClient {
 
     @GetMapping("/{id}/subscriptions")
     List<OwnerDto> getOwnersList(@PathVariable("id") long usedIdTg);
+
+    @GetMapping("//subscriptions")
+    List<OwnerDto> getOwnersDemoList();
 }

@@ -3,7 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/db-planny-service" />
-    <file type="web" url="file://$PROJECT_DIR$/db-user-PA-service" />
+    <file type="web" url="file://$PROJECT_DIR$/db-user-pa-service" />
     <file type="web" url="file://$PROJECT_DIR$/editor-planny-ui" />
     <file type="web" url="file://$PROJECT_DIR$/notification-service" />
     <file type="web" url="file://$PROJECT_DIR$/report-generator" />

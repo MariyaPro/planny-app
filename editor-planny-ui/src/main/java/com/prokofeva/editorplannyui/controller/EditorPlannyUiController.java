@@ -30,7 +30,7 @@ public class EditorPlannyUiController {
     @LogRequest(logResult = false)
     public String showCreateForm(Model model) {
         model.addAttribute("eventForm", EventForm.builder().build());
-        model.addAttribute("owners", dbPlannyService.getOwnersList(true));
+        model.addAttribute("owners", dbUserPAService.getOwnersDemoList());
         return "events-new";
     }
 

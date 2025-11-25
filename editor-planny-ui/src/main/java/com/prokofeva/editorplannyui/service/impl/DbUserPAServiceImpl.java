@@ -20,4 +20,9 @@ public class DbUserPAServiceImpl implements DbUserPAService {
         return dbUserPAClient.getOwnersList(userIdTg);
     }
 
+    @Override
+    public List<OwnerDto> getOwnersDemoList() {
+        return dbUserPAClient.getOwnersDemoList();
+    }
+
 }

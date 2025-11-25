@@ -25,7 +25,7 @@ public class ReportGeneratorFacade {
         }
         var generator = generatorFormatFactory.getGeneratorByFormat(format);
         var report = generator.generate(request, dataFromDb);
-        log.debug("Report: {}", report);
+        log.info("Report: {}", report);
         var reportId = reportService.save(format, report);
         log.info("Success. Report ID: {}", reportId);
         return reportId;

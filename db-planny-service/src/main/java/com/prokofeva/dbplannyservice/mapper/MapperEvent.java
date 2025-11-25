@@ -3,7 +3,6 @@ package com.prokofeva.dbplannyservice.mapper;
 import com.prokofeva.dbplannyservice.dto.EventDto;
 import com.prokofeva.dbplannyservice.entity.Event;
 import com.prokofeva.dbplannyservice.service.EventTypeService;
-import com.prokofeva.dbplannyservice.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class MapperEvent {
     private final EventTypeService eventTypeService;
-    private final OwnerService ownerService;
 
     public Event toEntity(EventDto dto) {
         var eventType = eventTypeService.findEventTypeByName(dto.getEventTypeName());
@@ -31,12 +29,10 @@ public class MapperEvent {
     }
 
     public EventDto toDto(Event entity) {
-        var ownerName = ownerService.findById(entity.getOwnerId()).name();
         return EventDto.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .ownerId(entity.getOwnerId())
-                .ownerName(ownerName)
                 .eventTypeName(entity.getEventType() == null ? null : entity.getEventType().getName())
                 .dateEvent(entity.getDateEvent())
                 .startTime(entity.getStartTime())

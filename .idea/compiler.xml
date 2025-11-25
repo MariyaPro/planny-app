@@ -11,6 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="db-user-pa-service" target="17" />
       <module name="scheduler-service.main" target="21" />
       <module name="scheduler-service.test" target="21" />
     </bytecodeTargetLevel>

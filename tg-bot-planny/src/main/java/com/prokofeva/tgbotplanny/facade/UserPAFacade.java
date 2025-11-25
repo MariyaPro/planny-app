@@ -22,7 +22,7 @@ public class UserPAFacade {
                 .idTg(user.getId())
                 .firstNameTg(user.getFirstName())
                 .lastNameTg(user.getLastName())
-                .nameForReport(user.getLastName() + " " + user.getFirstName())
+                .nameForReport(user.getFirstName() + " " + user.getLastName())
                 .isBot(user.getIsBot())
                 .userNameTg(user.getUserName())
                 .languageCode(user.getLanguageCode())

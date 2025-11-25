@@ -33,4 +33,12 @@ public class UserPAFacade {
     public boolean existsUserTG(long idTg) {
         return userPAService.existsUserTg(idTg);
     }
+
+    public List<OwnerDto> getDemoSubscriptions() {
+        return List.of(
+                new OwnerDto("test-01", "Саша Т."),
+                new OwnerDto("test-02", "Паша Т."),
+                new OwnerDto("test-03", "Даша Т.")
+        );
+    }
 }

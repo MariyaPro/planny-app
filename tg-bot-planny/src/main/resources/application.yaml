@@ -6,8 +6,8 @@ spring:
     name: tg-bot-planny
   data:
     mongodb:
-      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/planny?authSource=admin
-      database: "mongo_planny"
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DATABASE}?authSource=admin
+      database: ${MONGO_DATABASE}
 
 services:
   report-generator: ${SERVICES_REPORT_GENERATOR}
@@ -24,8 +24,8 @@ jwt:
   secret: ${JWT_SECRET}
 
 users:
-  allowed-to-create: "1038803098,1209586362"
-  allowed-to-read: "1038803098,1209586362"
+  allowed-to-create: ${USERS_CREATORS}
+  allowed-to-read: ${USERS_READERS}
 
 logging:
   file:

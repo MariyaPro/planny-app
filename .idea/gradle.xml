@@ -17,7 +17,7 @@
         <option name="gradleJvm" value="temurin-23" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/db-user-PA-service" />
+            <option value="$PROJECT_DIR$/db-user-pa-service" />
           </set>
         </option>
       </GradleProjectSettings>
