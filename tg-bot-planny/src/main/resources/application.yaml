@@ -6,14 +6,14 @@ spring:
     name: tg-bot-planny
   data:
     mongodb:
-      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/planny?authSource=admin
-      database: "mongo_planny"
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DATABASE}?authSource=admin
+      database: ${MONGO_DATABASE}
 
 services:
   report-generator: ${SERVICES_REPORT_GENERATOR}
-#  editor-planny-ui: ${SERVICES_EDITOR_PLANNY_UI}
-  editor-planny-ui: "https://editor-planny-ui-mprokofeva.amvera.io/api/planny"
-  db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}
+  editor-planny-ui: ${SERVICES_EDITOR_PLANNY_UI}
+#  editor-planny-ui: "https://editor-planny-ui-mprokofeva.amvera.io/api/planny"
+  db-user-pa-service: ${SERVICES_DB_USER_PA_SERVICE}
 
 telegrambot:
   name: ${TELEGRAMBOT_NAME}
@@ -22,6 +22,10 @@ telegrambot:
 
 jwt:
   secret: ${JWT_SECRET}
+
+users:
+  allowed-to-create: ${USERS_CREATORS}
+  allowed-to-read: ${USERS_READERS}
 
 logging:
   file:

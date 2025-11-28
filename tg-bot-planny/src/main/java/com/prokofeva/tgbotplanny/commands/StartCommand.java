@@ -18,9 +18,7 @@ public class StartCommand implements Command {
         var user = update.getMessage().getFrom();
         var msg = String.format("Добрый день, %s!", user.getFirstName());
         botPlanny.sendText(user.getId(), msg);
-        if (userPAFacade.checkAndUpdateUser(user)) {
-            botPlanny.sendText(user.getId(), "Я Вас раньше не встречала.");
-        }
+        userPAFacade.checkAndUpdateUser(user);
     }
 
 }

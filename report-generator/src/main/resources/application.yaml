@@ -6,8 +6,8 @@ spring:
     name: report-generator
   data:
     mongodb:
-      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/planny?authSource=admin
-      database: "mongodb"
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DATABASE}?authSource=admin
+      database: ${MONGO_DATABASE}
 
 services:
   db-planny-service: ${SERVICES_DB_PLANNY_SERVICE}

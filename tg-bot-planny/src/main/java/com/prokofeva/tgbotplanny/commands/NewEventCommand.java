@@ -15,24 +15,33 @@ import java.util.List;
 public class NewEventCommand implements Command {
     @Value("${services.editor-planny-ui}")
     private String baseUrl;
+    @Value("${users.allowed-to-create}")
+    private String creators;
 
     @Override
     public void execute(BotPlanny botPlanny, Update update) {
         var userId = update.getMessage().getFrom().getId();
-        askParam(botPlanny, userId);
+        if (checkPermissions(userId)) {
+            askParam(botPlanny, userId);
+            return;
+        }
+        botPlanny.sendText(userId, "You don't have permission to do this!");
+    }
+
+    private boolean checkPermissions(long userId) {
+        return creators.contains(String.valueOf(userId));
     }
 
     public void askParam(BotPlanny botPlanny, Long userId) {
         var keyboardIn = InlineKeyboardButton.builder()
                 .text("форма")
-                .url(baseUrl +"/events/new/"+userId)
+                .url(baseUrl + "/events/new/" + userId)
                 .build();
         InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
                 .clearKeyboard()
                 .keyboardRow(List.of(keyboardIn))
                 .build();
 
-//        botPlanny.sendKeyboard(userId, inlineKeyboardMarkup, "заполни форму");
-        botPlanny.sendMenu(userId,"Заполни форму",inlineKeyboardMarkup);
+        botPlanny.sendMenu(userId, "Заполни форму", inlineKeyboardMarkup);
     }
 }

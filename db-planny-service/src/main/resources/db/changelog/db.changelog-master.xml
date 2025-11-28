@@ -10,5 +10,6 @@
     <include file="/db/changelog/changes-db-events/2025/002-event_type_data.xml"/>
     <include file="/db/changelog/changes-db-events/2025/003-owners_data.xml"/>
     <include file="/db/changelog/changes-db-events/2025/004-owners_add_column.xml"/>
+    <include file="/db/changelog/changes-db-events/2025/005-owners_refactor.xml"/>
 
 </databaseChangeLog>

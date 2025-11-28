@@ -1,4 +1,4 @@
-package com.prokofeva.tgbotplanny.entity;
+package com.prokofeva.dbuserpaservice.entity;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -19,14 +19,15 @@ public class UserPA {
     @Id
     private String _id;
 
-    private @NotNull Long idTg;
+    private Long idTg;
     private @NotEmpty String firstNameTg;
     private String lastNameTg;
+    private @NotNull String nameForReport;
     private @NotNull boolean isBot;
     private String userNameTg;
     private String languageCode;
-
-    private String ownerId;
+    private String description;
+    private boolean active;
 
     //    private List<UserTG> subscribersId;
     private List<String> subscriptionsId;

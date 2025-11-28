@@ -1,5 +1,6 @@
 package com.prokofeva.tgbotplanny.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 import java.util.List;
@@ -10,10 +11,11 @@ public record UserPADto(
         Long idTg,
         String firstNameTg,
         String lastNameTg,
+        @NotNull
+        String nameForReport,
         Boolean isBot,
         String userNameTg,
         String languageCode,
-        String ownerId,
         List<String> subscriptionsId
 ) {
 }
