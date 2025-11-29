@@ -1,8 +1,11 @@
 package com.prokofeva.reportgenerator.service.impl.generator;
 
 import com.prokofeva.reportgenerator.dto.EventDto;
+import com.prokofeva.reportgenerator.dto.OwnerDto;
 import com.prokofeva.reportgenerator.dto.ReportRequest;
+import com.prokofeva.reportgenerator.service.DbUserPaService;
 import com.prokofeva.reportgenerator.service.GeneratorFormat;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -11,7 +14,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class GeneratorFormatTxt implements GeneratorFormat {
+    private final DbUserPaService dbUserPaService;
     private static final Map<Integer, String> mapWeekRu = new HashMap<>();
 
     static {
@@ -26,9 +31,13 @@ public class GeneratorFormatTxt implements GeneratorFormat {
 
     @Override
     public String generate(ReportRequest request, List<EventDto> data) {
+        var ownersList = dbUserPaService.getUserPASubscriptions(request.userIdTg());
+        var ownersMap = ownersList.stream()
+                .collect(Collectors.toMap(OwnerDto::id, OwnerDto::name));
+
         var reportSb = new StringBuilder();
         if (Objects.equals(request.dateStart(), request.dateEnd())) {
-            return buildDaysData(data).toString();
+            return buildDaysData(data, ownersMap).toString();
         }
         var weekTitle = buildTitle(request);
         reportSb.append(weekTitle)
@@ -38,24 +47,24 @@ public class GeneratorFormatTxt implements GeneratorFormat {
                 .collect(Collectors.groupingBy(EventDto::dateEvent))
                 .values()
                 .stream().sorted(Comparator.comparing(l -> l.get(0).dateEvent()))
-                .forEach(listDay -> reportSb.append("-----------------\n").append(buildDaysData(listDay)));
+                .forEach(listDay -> reportSb.append("-----------------\n").append(buildDaysData(listDay, ownersMap)));
 
         return reportSb.toString();
     }
 
-    private StringBuilder buildDaysData(List<EventDto> dataDay) {
+    private StringBuilder buildDaysData(List<EventDto> dataDay, Map<String, String> ownersMap) {
         var reportSb = new StringBuilder();
         var title = buildDayTitle(dataDay.get(0).dateEvent());
         reportSb.append(title)
                 .append(String.format("запланировано %d.\n", dataDay.size()));
-        dataDay.forEach(event -> reportSb.append(buildEventDescription(event)));
+        dataDay.forEach(event -> reportSb.append(buildEventDescription(event,ownersMap)));
         return reportSb;
     }
 
-    private String buildEventDescription(EventDto eventDto) {
+    private String buildEventDescription(EventDto eventDto, Map<String, String> ownersMap) {
         var evDescription = new StringBuilder();
         evDescription.append(String.format("* %s\n", eventDto.title()))
-                .append(String.format("\t\t\t\t\t\tКто: %s\n", eventDto.ownerName()));
+                .append(String.format("\t\t\t\t\t\tКто: %s\n", ownersMap.get(eventDto.ownerId())));
 //                .append(String.format("\t\t\t\t\t\tКатегория: %s\n", eventDto.eventTypeName()));
         if (eventDto.startTime() != null) {
             evDescription.append(String.format("\t\t\t\t\t\tВремя: с %s", eventDto.startTime()));

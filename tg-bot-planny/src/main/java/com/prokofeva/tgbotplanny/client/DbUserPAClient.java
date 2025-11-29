@@ -18,7 +18,7 @@ public interface DbUserPAClient {
     void checkAndUpdateUser(User user);
 
     @GetMapping("/users")
-    boolean existsUserTg(@RequestParam ("tg") long id);
+    boolean existsUserTg(@RequestParam("tg") long id);
 
     @PostMapping("/")
     void saveUser(@RequestBody UserPADto userPADto);

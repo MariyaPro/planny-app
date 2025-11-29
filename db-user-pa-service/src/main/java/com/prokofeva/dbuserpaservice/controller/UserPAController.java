@@ -29,16 +29,16 @@ public class UserPAController {
         return ResponseEntity.ok(userPAFacade.existsUserTG(idTg));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idtg}")
     @LogRequest
-    public ResponseEntity<Object> getUserPA(@PathVariable("id") long userId) {
-        return ResponseEntity.ok(userPAFacade.getUserPA(userId));
+    public ResponseEntity<Object> getUserPA(@PathVariable("idtg") long userIdTg) {
+        return ResponseEntity.ok(userPAFacade.getUserPA(userIdTg));
     }
 
-    @GetMapping("/{id}/subscriptions")
+    @GetMapping("/{idtg}/subscriptions")
     @LogRequest
-    public ResponseEntity<Object> getUserPASubscriptions(@PathVariable("id") long userId) {
-       return ResponseEntity.ok(userPAFacade.getUserPASubscriptions(userId)) ;
+    public ResponseEntity<Object> getUserPASubscriptions(@PathVariable("idtg") long userIdTg) {
+       return ResponseEntity.ok(userPAFacade.getUserPASubscriptions(userIdTg)) ;
     }
 
     @GetMapping("/demo/subscriptions")
@@ -46,6 +46,5 @@ public class UserPAController {
     public ResponseEntity<Object> getDemoSubscriptions() {
         return ResponseEntity.ok(userPAFacade.getDemoSubscriptions()) ;
     }
-
 
 }

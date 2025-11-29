@@ -12,7 +12,7 @@ public record EventDto(
         @NotEmpty
         String title,
         @NotEmpty
-        String ownerName,
+        String ownerId,
         @NotEmpty
         String eventTypeName,
         @NotNull
