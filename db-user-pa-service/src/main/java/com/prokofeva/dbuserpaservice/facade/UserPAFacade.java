@@ -21,8 +21,8 @@ public class UserPAFacade {
        userPAService.save(userDb);
     }
 
-    public UserPADto getUserPA(long userId) {
-        return userPAService.findUserPAByIdTg(userId);
+    public UserPADto getUserPA(long userIdTg) {
+        return userPAService.findUserPAByIdTg(userIdTg);
     }
 
     public List<OwnerDto> getUserPASubscriptions(long userId) {

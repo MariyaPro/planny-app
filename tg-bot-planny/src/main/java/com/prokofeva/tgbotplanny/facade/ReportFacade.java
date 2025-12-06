@@ -21,7 +21,7 @@ public class ReportFacade {
     public String getReport(CallbackQuery callbackQuery) {
         var userName = callbackQuery.getFrom().getFirstName();
         var reportTypeCode = ReportTypeCode.valueOf(ReportTypeCode.class, callbackQuery.getData());
-        var request = generateRequest(reportTypeCode);
+        var request = generateRequest(reportTypeCode, callbackQuery.getFrom().getId());
         var id = getReportId(request);
         if (id == null) return "В запрошенном периоде нет запланированных событий.\nОтдыхайте!";
         return String.format("Вот твой план %s, %s:\n\n%s", reportTypeCode.getDescription(), userName, reportService.getContent(id));
@@ -31,7 +31,7 @@ public class ReportFacade {
         return reportProducerClient.generateReportTxt(request);
     }
 
-    private ReportRequest generateRequest(ReportTypeCode reportTypeCode) {
+    private ReportRequest generateRequest(ReportTypeCode reportTypeCode, Long idTg) {
         var startDate = switch (reportTypeCode) {
             case WEEK_REPORT, TODAY_REPORT -> LocalDate.now(); // MONTH_REPORT
             case TOMORROW_REPORT -> LocalDate.now().plusDays(1);
@@ -44,6 +44,7 @@ public class ReportFacade {
 //            case FREE_REPORT -> Objects.isNull(request.endDate()) ? LocalDate.now() : request.endDate();
         };
         return ReportRequest.builder()
+                .userIdTg(idTg)
                 .dateStart(startDate)
                 .dateEnd(endDate)
                 .build();
