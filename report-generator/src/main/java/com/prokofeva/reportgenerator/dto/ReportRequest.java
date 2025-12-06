@@ -7,6 +7,7 @@ import java.util.List;
 
 @Builder
 public record ReportRequest(
+        Long userIdTg,
         LocalDate dateStart,
         LocalDate dateEnd,
         List<String> owners,

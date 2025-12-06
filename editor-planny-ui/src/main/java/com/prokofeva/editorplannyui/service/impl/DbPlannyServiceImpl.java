@@ -4,7 +4,6 @@ import com.prokofeva.editorplannyui.client.DbPlannyClient;
 import com.prokofeva.editorplannyui.dto.EventDto;
 import com.prokofeva.editorplannyui.dto.EventForm;
 import com.prokofeva.editorplannyui.dto.EventRequest;
-import com.prokofeva.editorplannyui.dto.OwnerDto;
 import com.prokofeva.editorplannyui.enums.Recurrence;
 import com.prokofeva.editorplannyui.service.DbPlannyService;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +26,10 @@ public class DbPlannyServiceImpl implements DbPlannyService {
         dbPlannyClient.save(eventRequest);
     }
 
-    @Override
-    public List<OwnerDto> getOwnersList() {
-        return dbPlannyClient.getOwnersList();
-    }
-
     private List<EventDto> buildListDto(EventForm eventForm) {
         var eventDto = EventDto.builder()
                 .title(eventForm.title())
-                .ownerName(eventForm.ownerName())
+                .ownerId(eventForm.ownerId())
                 .eventTypeName(eventForm.eventTypeName())
                 .dateEvent(eventForm.startEvent())
                 .startTime(eventForm.startTime())
@@ -53,7 +47,7 @@ public class DbPlannyServiceImpl implements DbPlannyService {
             while (!curDate.isAfter(endEvent)) {
                 var event = EventDto.builder()
                         .title(eventForm.title())
-                        .ownerName(eventForm.ownerName())
+                        .ownerId(eventForm.ownerId())
                         .eventTypeName(eventForm.eventTypeName())
                         .dateEvent(curDate)
                         .startTime(eventForm.startTime())

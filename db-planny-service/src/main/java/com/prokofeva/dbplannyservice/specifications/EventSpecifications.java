@@ -2,7 +2,6 @@ package com.prokofeva.dbplannyservice.specifications;
 
 import com.prokofeva.dbplannyservice.entity.Event;
 import com.prokofeva.dbplannyservice.entity.EventType;
-import com.prokofeva.dbplannyservice.entity.Owner;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -36,11 +35,6 @@ public class EventSpecifications {
     }
 
     public static Specification<Event> ownersInList(List<String> owners) {
-        return (root, query, cb) -> {
-            Join<Event, Owner> ownerJoin = root.join("owner");
-            Predicate ownersInList = ownerJoin.get("name").in(owners);
-            Predicate ownerActive = cb.isTrue(ownerJoin.get("active"));
-            return cb.and(ownersInList, ownerActive);
-        };
+        return (root, query, cb) -> cb.isTrue(root.get("ownerId").in(owners));
     }
 }

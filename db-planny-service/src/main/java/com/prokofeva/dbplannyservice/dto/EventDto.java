@@ -23,7 +23,7 @@ public class EventDto {
     @NotEmpty
     private String title;
     @NotEmpty
-    private String ownerName;
+    private String ownerId;
     @NotEmpty
     private String eventTypeName;
     @NotNull

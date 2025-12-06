@@ -63,7 +63,7 @@
                 <!-- Владелец -->
                 <div class="mb-3">
                     <label for="owner" class="form-label fw-bold">Владелец</label>
-                    <select class="form-select" id="owner" th:field="*{ownerName}" required>
+                    <select class="form-select" id="owner" th:field="*{ownerId}" required>
                         <option value="">Выберите владельца</option>
                         <option th:each="owner : ${owners}"
                                 th:value="${owner.id}"

@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReportRepository extends MongoRepository<ReportDoc, String> {
 
-//    @Query(value = "find({ '_id': ObjectId( :reportId ) })")
-//    Optional<String> getReportById(@Param("reportId") String reportId);
 }

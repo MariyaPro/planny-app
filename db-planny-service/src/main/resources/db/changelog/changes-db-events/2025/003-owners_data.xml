@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2025-003-001" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Миша', 'Прокофьев Михаил Денисович', true, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Прокофьев Михаил Денисович'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-002" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Дима', 'Прокофьев Дмитрий Денисович', true, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Прокофьев Дмитрий Денисович'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-003" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Денис', 'Прокофьев Денис Владимиорвич', true, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Прокофьев Денис Владимирович'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-004" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Маша', 'Прокофьева Мария Сергеевна', true, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Прокофьева Мария Сергеевна'
+            </sql>
+        </rollback>
+    </changeSet>
+
+
+<!--    free data for test-->
+    <changeSet id="2025-003-005" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Саша Т.', 'Тестовый Саша для демо-отчета', false, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Тестовый Паша для демо-отчета'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-006" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Паша Т.', 'Тестовый Паша для демо-отчета', false, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Тестовый Паша для демо-отчета'
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="2025-003-007" author="mprokofeva">
+        <sql>
+            insert into db_events.owners(id, name, description, active, updated)
+            values (gen_random_uuid(), 'Даша Т.', 'Тестовая Даша для демо-отчета', false, current_timestamp);
+        </sql>
+        <rollback>
+            <sql>
+                delete from db_events.owners where description = 'Тестовая Даша для демо-отчета'
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

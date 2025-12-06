@@ -53,7 +53,7 @@ public class GeneratorFormatJson implements GeneratorFormat {
     }
 
     private ReportDay buildDaysData(List<EventDto> data) {
-        var title = buildDayTitle(data.getFirst().dateEvent());
+        var title = buildDayTitle(data.get(0).dateEvent());
         return ReportDay.builder()
                 .dayTitle(title)
                 .totalEvent(data.size())

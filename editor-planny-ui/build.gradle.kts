@@ -10,7 +10,7 @@ description = "editor-planny-ui"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion.set(JavaLanguageVersion.of(17))
 	}
 }
 
@@ -43,6 +43,14 @@ dependencyManagement {
 	}
 }
 
+tasks.withType<JavaCompile> {
+	options.compilerArgs.addAll(listOf("-Xlint:unchecked", "-Xlint:deprecation"))
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.withType<Jar> {
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }

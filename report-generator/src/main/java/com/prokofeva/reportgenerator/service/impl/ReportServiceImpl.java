@@ -19,6 +19,6 @@ public class ReportServiceImpl implements ReportService {
                 .format(format)
                 .build();
 
-        return reportRepository.save(rep).get_id().toHexString();
+        return reportRepository.save(rep).get_id();
     }
 }

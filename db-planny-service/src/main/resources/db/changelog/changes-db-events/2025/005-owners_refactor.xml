@@ -5,28 +5,22 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="2025-001-001" author="mprokofeva">
+    <changeSet id="2025-005-001" author="mprokofeva">
         <sql>
-            create schema users_settings;
+            TRUNCATE TABLE db_events.events;
+            ALTER TABLE db_events.events DROP column owner_id;
+            DROP TABLE db_events.owners;
         </sql>
     </changeSet>
-    <changeSet id="2025-001-002" author="mprokofeva">
+    <changeSet id="2025-005-002" author="mprokofeva">
         <sql>
-            create table users_settings.users
-            (
-                id          uuid         not null,
-                name        varchar(255) not null,
-                description varchar(255),
-                active      boolean default true,
-                updated     timestamp
-            );
+            alter table db_events.events add column owner_id varchar(64);
         </sql>
         <rollback>
             <sql>
-                drop table users_settings.users
+                alter table db_events.events drop column owner_id;
             </sql>
         </rollback>
     </changeSet>
-
 
 </databaseChangeLog>

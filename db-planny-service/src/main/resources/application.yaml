@@ -23,4 +23,4 @@ spring:
 
 logging:
   file:
-    name: logs/log_db-planny-service
+    name: /data/logs/log_db-planny-service

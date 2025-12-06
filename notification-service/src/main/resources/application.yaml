@@ -34,4 +34,4 @@ cron:
 
 logging:
   file:
-    name: logs/log_notification-service
+    name: /data/logs/log_notification-service
