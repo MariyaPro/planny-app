@@ -5,12 +5,16 @@ import com.prokofeva.tgbotplanny.facade.ReportFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.prokofeva.tgbotplanny.util.Util.toJson;
 
@@ -23,6 +27,8 @@ public class BotPlanny extends TelegramLongPollingBot {
     private final ReportFacade reportFacade;
     private String name;
     private String token;
+    @Value("${telegrambot.length-max}")
+    private int maxLength;
 
     @Override
     public String getBotUsername() {
@@ -40,7 +46,22 @@ public class BotPlanny extends TelegramLongPollingBot {
             log.info("Callback query: {}", toJson(update.getCallbackQuery()));
             var userId = update.getCallbackQuery().getFrom().getId();
             var report = reportFacade.getReport(update.getCallbackQuery());
-            sendText(userId, report);
+            if (report.length() >= maxLength) {
+                List<String> parts = new ArrayList<>();
+                for (int i = 0; i < report.length(); i += maxLength) {
+                    parts.add(report.substring(i, Math.min(report.length(), i + maxLength)));
+                }
+                for (String part : parts) {
+                    sendText(userId, part);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            } else {
+                sendText(userId, report);
+            }
         } else {
             var msg = update.getMessage();
             var id = msg.getFrom().getId();

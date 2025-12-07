@@ -19,6 +19,7 @@ telegrambot:
   name: ${TELEGRAMBOT_NAME}
   id: ${TELEGRAMBOT_ID}
   token: ${TELEGRAMBOT_TOKEN}
+  length-max: 4096
 
 jwt:
   secret: ${JWT_SECRET}
