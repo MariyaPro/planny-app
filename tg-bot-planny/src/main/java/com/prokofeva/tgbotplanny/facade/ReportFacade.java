@@ -33,14 +33,14 @@ public class ReportFacade {
 
     private ReportRequest generateRequest(ReportTypeCode reportTypeCode, Long idTg) {
         var startDate = switch (reportTypeCode) {
-            case WEEK_REPORT, TODAY_REPORT -> LocalDate.now(); // MONTH_REPORT
+            case WEEK_REPORT, TODAY_REPORT,MONTH_REPORT -> LocalDate.now();
             case TOMORROW_REPORT -> LocalDate.now().plusDays(1);
 //            case FREE_REPORT -> request.date();
         };
         var endDate = switch (reportTypeCode) {
             case TODAY_REPORT, TOMORROW_REPORT -> startDate;
             case WEEK_REPORT -> startDate.plusDays(6);
-//            case MONTH_REPORT -> startDate.plusMonths(1);
+            case MONTH_REPORT -> startDate.plusMonths(1);
 //            case FREE_REPORT -> Objects.isNull(request.endDate()) ? LocalDate.now() : request.endDate();
         };
         return ReportRequest.builder()
